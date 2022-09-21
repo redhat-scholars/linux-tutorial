@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Deploy Service :: Template Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/course-template/template-tutorial/02-deploy.html">
+    <title>Getting Started :: Template Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/course-template/template-tutorial/00-introduction.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="01-setup.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -53,7 +55,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">1. Getting Started</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="00-introduction.html">Linux</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -91,91 +93,86 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Template Tutorial</a></li>
-    <li><a href="02-deploy.html">Deploy Service</a></li>
+    <li>1. Getting Started</li>
+    <li><a href="00-introduction.html">Linux</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/02-deploy.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/00-introduction.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Deploy Service</h1>
+<h1 class="page">Getting Started</h1>
 <div class="sect1">
-<h2 id="service"><a class="anchor" href="#service"></a>The Service</h2>
+<h2 id="linux"><a class="anchor" href="#linux"></a>What is Linux?</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The code:</p>
-</div>
-<div class="listingblock lines_7 console-input">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class Main {
-
-    public static void main(String[] args) {
-
-    }
-
-}
-
-./mvnw compile</code></pre>
+<img src="_images/introduction/linux-banner.png" alt="Linux banner" width="800">
 </div>
+</div>
+<div class="paragraph">
+<p><strong>Linux</strong> is an <strong>open source operating system</strong> (OS).</p>
+</div>
+<div class="paragraph">
+<p>An operating system is the software that directly manages a system’s hardware and resources, like CPU, memory, and storage.</p>
+</div>
+<div class="paragraph">
+<p>The OS sits between applications and hardware and makes the connections between all of your software and the physical resources that do the work.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="package"><a class="anchor" href="#package"></a>Packaging the Service</h2>
+<h2 id="linux-work"><a class="anchor" href="#linux-work"></a>How does Linux work?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can package the next bash script:</p>
+<p>Linux was designed to be similar to UNIX, but has evolved to run on a wide variety of hardware from phones to supercomputers.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/bin/sh
-echo "Hello World"</code></pre>
+<div class="paragraph">
+<p>Every Linux-based OS involves the <strong>Linux kernel</strong>—which manages hardware resources—and a set of software packages that make up the rest of the operating system.</p>
 </div>
+<div class="paragraph">
+<p>The OS includes some common core components, like the <strong>GNU tools</strong>, among others.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="deploy"><a class="anchor" href="#deploy"></a>Deploy the Service</h2>
+<h2 id="linux-include"><a class="anchor" href="#linux-include"></a>What does Linux include?</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/introduction/linux-include.png" alt="Components of linux" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Linux is comprised of several important parts, including the:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Kernel: The core part of Linux, responsible for all major activities of this operating system.</p>
+</li>
+<li>
+<p>System user space: All of the code in an operating system that lives outside of the kernel.</p>
+</li>
+<li>
+<p>Applications: Software applications designed for Linux or Unix systems, mainly distributed as packages.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lab-prep"><a class="anchor" href="#lab-prep"></a>What&#8217;s in this Linux Deep Dive?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>And then you can deploy the service and execute commands inside:</p>
-</div>
-<div class="paragraph">
-<p>Check that the pod is up and running:</p>
-</div>
-<div class="listingblock lines_space console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get pods</code></pre>
-</div>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                        READY   STATUS    RESTARTS   AGE
-apps   1/1     Running   0          5s</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then let&#8217;s go into the running pod to execute some commands:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl exec -ti apps /bin/bash</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Change the pod name with your pod name.
-</td>
-</tr>
-</table>
+<p>In this Linux Tutorial Deep Dive, you&#8217;ll be learning a variety of things, from how to install a RHEL virtual machine, to basic Linux commands, to more advanced code editors, SELinux, and more. Let&#8217;s begin!</p>
 </div>
 </div>
 </div>
+<nav class="pagination">
+  <span class="prev"><a href="index.html">Template Tutorial</a></span>
+  <span class="next"><a href="01-setup.html">Installation</a></span>
+</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

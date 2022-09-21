@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Welcome to Template Tutorial :: Template Tutorial</title>
+    <title>Linux Deep Dive :: Template Tutorial</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/course-template/template-tutorial/index.html">
-    <link rel="next" href="01-setup.html">
+    <link rel="next" href="00-introduction.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -52,25 +52,28 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="01-setup.html">1. Setup</a>
+    <span class="nav-text">1. Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="01-setup.html#prerequisite">Prerequisites</a>
+    <a class="nav-link" href="00-introduction.html">Linux</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="01-setup.html#minikube">Setup Minikube</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="01-setup.html">Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="01-setup.html#downloadingrhel">Downloading RHEL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="01-setup.html#virtualbox">Setting up VirtualBox</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="01-setup.html#gettingstarted">Getting started with RHEL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="01-setup.html#rhel-cli">RHEL CLI</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="02-deploy.html">2. Deploy Service</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="02-deploy.html#package">Build Service</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="02-deploy.html#deploy">Deploy Dervice</a>
   </li>
 </ul>
   </li>
@@ -89,48 +92,79 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Template Tutorial</a></li>
-    <li><a href="index.html">Welcome to Template Tutorial</a></li>
+    <li><a href="index.html">Linux Deep Dive</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Welcome to Template Tutorial</h1>
+<h1 class="page">Linux Deep Dive</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/rhel-logo.png" alt="RHEL Logo" width="600">
+</div>
+</div>
+</div>
+</div>
 <div class="sect1 text-center strong">
-<h2>Publish Services to Kubernetes</h2>
+<h2>Welcome to your Linux Journey!</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>A Kubernetes tutorial to show how you can deploy a Java service to a Kubernetes cluster as it was a child game.</p>
+<p>This tutorial will provide you with an introduction to Linux skills, using <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux</a> (RHEL).</p>
+</div>
+</div>
+</div>
+<div class="sect1 text-center strong">
+<h2>What is Red Hat Enterprise Linux?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now optimized for development. Learn more <a href="https://developers.redhat.com/products/rhel/overview">here</a>!</p>
 </div>
 </div>
 </div>
 <div class="sect1 tiles browse">
-<h2>Browse modules</h2>
+<h2>Tutorial Steps</h2>
 <div class="sectionbody">
 <div class="ulist tile">
-<div class="title"><a href="01-setup.html" class="xref page">Get Started</a></div>
 <ul>
 <li>
-<p><a href="01-setup.html#minikube" class="xref page">Minikube</a></p>
+<p>1. Getting Started</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="00-introduction.html" class="xref page">Linux</a></p>
+</li>
+<li>
+<p><a href="01-setup.html" class="xref page">Installation</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="01-setup.html#downloadingrhel" class="xref page">Downloading RHEL</a></p>
+</li>
+<li>
+<p><a href="01-setup.html#virtualbox" class="xref page">Setting up VirtualBox</a></p>
+</li>
+<li>
+<p><a href="01-setup.html#gettingstarted" class="xref page">Getting started with RHEL</a></p>
+</li>
+<li>
+<p><a href="01-setup.html#rhel-cli" class="xref page">RHEL CLI</a></p>
 </li>
 </ul>
 </div>
-<div class="ulist tile">
-<div class="title"><a href="02-deploy.html" class="xref page">Deploying</a></div>
-<ul>
-<li>
-<p><a href="02-deploy.html#package" class="xref page">Package the Application</a></p>
 </li>
-<li>
-<p><a href="02-deploy.html#deploy" class="xref page">Deploy the Application</a></p>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="01-setup.html">1. Setup</a></span>
+  <span class="next"><a href="00-introduction.html">Linux</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

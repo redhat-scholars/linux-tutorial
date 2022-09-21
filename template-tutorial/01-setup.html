@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Setup :: Template Tutorial</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/course-template/template-tutorial/01-setup.html">
-    <link rel="prev" href="index.html">
-    <link rel="next" href="02-deploy.html">
+    <link rel="prev" href="00-introduction.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -51,27 +50,30 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="01-setup.html">1. Setup</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#prerequisite">Prerequisites</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#minikube">Setup Minikube</a>
-  </li>
-</ul>
-  </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="02-deploy.html">2. Deploy Service</a>
+    <span class="nav-text">1. Getting Started</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="02-deploy.html#package">Build Service</a>
+    <a class="nav-link" href="00-introduction.html">Linux</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="02-deploy.html#deploy">Deploy Dervice</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="01-setup.html">Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#downloadingrhel">Downloading RHEL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#virtualbox">Setting up VirtualBox</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#gettingstarted">Getting started with RHEL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#rhel-cli">RHEL CLI</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -90,7 +92,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Template Tutorial</a></li>
-    <li><a href="01-setup.html">1. Setup</a></li>
+    <li>1. Getting Started</li>
+    <li><a href="01-setup.html">Installation</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/01-setup.adoc">Edit this Page</a></div>
@@ -98,276 +101,234 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Setup</h1>
-<div class="sect1">
-<h2 id="prerequisite"><a class="anchor" href="#prerequisite"></a>Prerequisite CLI tools</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following CLI tools are required for running the exercises in this tutorial.
-Please have them installed and configured before you get started with any of the tutorial chapters.</p>
+<p>In order to work begin using Red Hat Enterprise Linux in this lab, you may need to run a RHEL virtual machine on your computer.
+This section will teach you how to download the operating system, install it on VirtualBox, and configure your RHEL machine once started.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-center valign-top"><strong>Tool</strong></th>
-<th class="tableblock halign-center valign-top"><strong>macOS</strong></th>
-<th class="tableblock halign-center valign-top"><strong>Fedora</strong></th>
-<th class="tableblock halign-center valign-top"><strong>windows</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>Git</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/mac">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/linux">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/win">Download</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>Docker</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://docs.docker.com/docker-for-mac/install">Docker for Mac</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>dnf install docker</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://docs.docker.com/docker-for-windows/install">Docker for Windows</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>VirtualBox</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://download.virtualbox.org/virtualbox/6.1.6/VirtualBox-6.1.6-137129-OSX.dmg">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://www.virtualbox.org/wiki/Linux_Downloads">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://download.virtualbox.org/virtualbox/6.1.6/VirtualBox-6.1.6-137129-Win.exe">Download</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://kubernetes.io/docs/tasks/tools/install-minikube">Minikube</a> v1.25.1</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/kubernetes/minikube/releases/download/v1.25.1/minikube-darwin-amd64">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/kubernetes/minikube/releases/download/v1.25.1/minikube-linux-amd64">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/kubernetes/minikube/releases/download/v1.25.1/minikube-windows-amd64.exe">Download</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>kubectl v1.23.1</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://storage.googleapis.com/kubernetes-release/release/v1.23.1/bin/darwin/amd64/kubectl">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://storage.googleapis.com/kubernetes-release/release/v1.23.1/bin/linux/amd64/kubectl">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://storage.googleapis.com/kubernetes-release/release/v1.23.1/bin/windows/amd64/kubectl.exe">Download</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/wercker/stern">stern</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>brew install stern</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/wercker/stern/releases/download/1.11.0/stern_windows_amd64.exe">Download</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>Apache Maven 3.6.3</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz">Download</a></p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>The following CLI tools are optional for running the exercises in this tutorial.
-Although they are used in the tutorial, you could use others without any problem.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-center valign-top"><strong>Tool</strong></th>
-<th class="tableblock halign-center valign-top"><strong>macOS</strong></th>
-<th class="tableblock halign-center valign-top"><strong>Fedora</strong></th>
-<th class="tableblock halign-center valign-top"><strong>windows</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/mikefarah/yq">yq v2.4.1</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/mikefarah/yq/releases/download/2.4.1/yq_darwin_amd64">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/mikefarah/yq/releases/download/2.4.1/yq_linux_amd64">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/mikefarah/yq/releases/download/2.4.1/yq_windows_amd64.exe">Download</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/stedolan/jq">jq v1.6.0</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/stedolan/jq/releases/download/jq-1.6/jq-osx-amd64">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe">Download</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://httpie.org/">httpie</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>brew install httpie</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>dnf install httpie</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://httpie.org/doc#windows-etc" class="bare">https://httpie.org/doc#windows-etc</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">watch</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>brew install watch</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>dnf install procps-ng</code></p></td>
-<td class="tableblock halign-center valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">kubectx and kubens</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>brew install kubectx</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/ahmetb/kubectx" class="bare">https://github.com/ahmetb/kubectx</a></p></td>
-<td class="tableblock halign-center valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/rakyll/hey">hey</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><code>brew install hey</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://storage.googleapis.com/jblabs/dist/hey_linux_v0.1.2">Download</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://hey-release.s3.us-east-2.amazonaws.com/hey_windows_amd64">Download</a></p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="minikube"><a class="anchor" href="#minikube"></a>Setup Kubernetes</h2>
+<h2 id="downloadingrhel"><a class="anchor" href="#downloadingrhel"></a>Downloading RHEL</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The profile my_profile is created to run the tutorial:</p>
-</div>
-<div class="tabset is-loading">
-<div class="ulist tabs">
-<ul>
-<li>
-<p><a id="tabset1_minikube"></a>Minikube</p>
-</li>
-<li>
-<p><a id="tabset1_openshift"></a>OpenShift</p>
-</li>
-</ul>
-</div>
-<div class="content">
-<div class="tab-pane" aria-labelledby="tabset1_minikube">
-<div class="paragraph">
-<p>Having <code>minikube</code> installed and in your <code>PATH</code>, then run:</p>
-</div>
-<div class="paragraph">
-<p><strong>MacOS</strong></p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube start --memory=8192 --cpus=3 --kubernetes-version=v1.23.1 --vm-driver=virtualbox -p my_profile</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Linux</strong></p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube start --memory=8192 --cpus=3 --kubernetes-version=v1.23.1 --vm-driver=kvm2 -p my_profile</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Windows:</strong></p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube start --memory=8192 --cpus=3 --kubernetes-version=v1.23.1 --vm-driver=hyperv -p my_profile</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>And the output must be something similar like:</p>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">😄  [my_profile] minikube v1.20.0 on Darwin 11.3
-✅  Created a new profile : my_profile
-✅  minikube profile was successfully set to my_profile
-😄  [default] minikube v1.25.1 on Darwin 11.3
-✨  Selecting 'virtualbox' driver from user configuration (alternates: [hyperkit])
-🔥  Creating virtualbox VM (CPUs=2, Memory=8192MB, Disk=50000MB) ...
-🐳  Preparing Kubernetes v1.23.1 on Docker '20.10.6' ...
-    ▪ apiserver.enable-admission-plugins=LimitRanger,NamespaceExists,NamespaceLifecycle,ResourceQuota,ServiceAccount,DefaultStorageClass,MutatingAdmissionWebhook
-🚜  Pulling images ...
-🚀  Launching Kubernetes ...
-⌛  Waiting for cluster to come online ...
-🏄  Done! kubectl is now configured to use "my_profile"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Finally configure to use minikube internal docker as docker host:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">eval $(minikube docker-env -p my_profile)</code></pre>
-</div>
-</div>
-</div>
-<div class="tab-pane" aria-labelledby="tabset1_openshift">
-<div class="paragraph">
-<p>To run OpenShift4, you need to have one provisioned using <a href="https://try.openshift.com">try.openshift.com</a> or can use any existing OpenShift4 cluster.
-Once you have your cluster, you can download the latest OpenShift client(oc) from <a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/">here</a> and add to your path.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>oc version</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can check the OpenShift version using:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The output should show oc version &gt;=4.7:</p>
-</div>
-<div class="listingblock console-output">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: 4.7.0-202102130115.p0-c66c03f
-Kubernetes Version: v1.23.1</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then login into the OpenShift cluster using <code>oc login</code></p>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>And then you are ready for start using Kubernetes:</p>
+<p>The first step to working with Red Hat Enterprise Linux is downloading the Universal Base Image from the <a href="https://developers.redhat.com/products/rhel/download">Red Hat Developer program</a>.
+On the Red Hat Developer page, scroll down to see the list of avaliable RHEL image downloads, and download the <strong>x86_64 Boot iso</strong>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/kubelogo.png" alt="kubelogo">
+<img src="_images/setup/download-rhel.png" alt="Download RHEL Button" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>From here, sign in to your Red Hat account or create a new account, and the download will start automatically.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/red-hat-account-login.png" alt="Red Hat Account Login" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>You now have a bootable RHEL <code>.iso</code> that we can use VirtualBox to run.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="virtualbox"><a class="anchor" href="#virtualbox"></a>Setting up VirtualBox</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://www.virtualbox.org/">VirtualBox</a> can be used to run operating systems in a special environment, called a virtual machine, on top of the existing operating system.
+We&#8217;ll use it to install the RHEL VM in this tutorial, so head to the VirtualBox <a href="https://www.virtualbox.org/wiki/Downloads">downloads page</a> to download the correct platform package for your machine.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/download-virtualbox.png" alt="Download VirtualBox" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>After installing and opening VirtualBox, you should be greeted at the homepage, where we&#8217;ll click on the <strong>New</strong> button to create a new VM.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/new-virtualbox.png" alt="Create new Virtualbox" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>From here, give this virtual machine a name, for example <em>RHEL</em>, and feel free to use the default machine folder location, which stores your virtual machine files.
+Under <strong>Version</strong>, be sure to select <em>Red Hat (64-bit)</em> if it hasn&#8217;t already pre-populated. Click continue from here.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/name-new-vm.png" alt="Name &amp; specify your new virtual machine" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Now, while the reccomended memory size is 1024 MB (1 GB), feel free to increase this to 2048 MB (2 GB) for normal usage.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/virtualbox-ram.png" alt="Allocating RAM to the virtual machine" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Select the default option to create a virtual hard disk now, and hit create. For the hard disk file type, select <em>VirtualBox Disk Image</em> (VDI, reccomended for normal usage), and select <em>Dynamically allocated</em> on the next prompt (also reccomended for daily usage).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/virtualbox-harddisk.png" alt="Creating a virtual hard disk for the VM" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Next, select the File location and size for the virtual hard disk. You can leave the default location, but select a size of 20 GB to ensure enough space for packages and downloads. Hit create to continue.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/virtualbox-harddisk-size.png" alt="Selecting the hard disk size" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, we need to attach the downloaded RHEL .iso file to our virtual machine. After selecting our RHEL VM, hit the settings menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/virtualbox-settings.png" alt="Entering the VirtualBox VM settings" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Under the storage section, select the <em>Empty</em> tab under Controller: IDE. Here, we can click on the CD icon and select <strong>*Choose a disk file&#8230;&#8203;</strong> to select our downloaded .iso file.
+Navigate to where you downloaded the RHEL .iso, and load it into VirtualBox.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/virtualbox-storage.png" alt="Adding the .iso file to our operating system" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Once loaded in, hit <strong>Ok</strong> to leave the storage, and return to the VirtualBox dashboard. Now, simply press <strong>Start</strong> to launch Red Hat Enterprise Linux!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/virtualbox-start.png" alt="Starting the RHEL VM" width="800">
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="downloadtutorial"><a class="anchor" href="#downloadtutorial"></a>Get tutorial sources</h2>
+<h2 id="gettingstarted"><a class="anchor" href="#gettingstarted"></a>Getting Started with RHEL</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before we start setting up the environment, let’s clone the tutorial sources and set the <code>TUTORIAL_HOME</code> environment variable to point to the root directory of the tutorial:</p>
+<p>Once you start the RHEL virtual machine, you&#8217;ll be greeted by the Red Hat Boot Loader. Simply click into the VM and press enter to begin with the default RHEL installation process.</p>
 </div>
-<div class="listingblock console-input">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/redhat-developer-demos/rhd-tutorial-common.git" class="bare">https://github.com/redhat-developer-demos/rhd-tutorial-common.git</a> my_folder</code></pre>
+<img src="_images/setup/rhel-bootloader.png" alt="Starting the RHEL VM" width="800">
 </div>
 </div>
-<div class="listingblock console-input">
+<div class="paragraph">
+<p>In around a minute, the installation wizard will start and ask you for your language. Select this, and proceed to configure the rest of your RHEL machine.</p>
+</div>
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export TUTORIAL_HOME="$(pwd)/my_folder"</code></pre>
+<img src="_images/setup/rhel-language-select.png" alt="Selecting the default language for RHEL" width="800">
 </div>
 </div>
-<div class="listingblock console-input">
+<div class="paragraph">
+<p>In addition, if you&#8217;d like to make the VirtualBox screen larger, head down to the window size control under the GUI and select <strong>Scale to 200%</strong>.</p>
+</div>
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd $TUTORIAL_HOME</code></pre>
+<img src="_images/setup/virtualbox-window-resize.png" alt="Resizing the VirtualBox window" width="800">
 </div>
+</div>
+<div class="paragraph">
+<p>The configuration items include selecting your time &amp; date, connecting to a Red Hat account, software selection, specififying installation destination, and root password/user creation.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-installation-menu.png" alt="RHEL installation menu" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Firstly, be sure to connect your Red Hat account to RHEL. Feel free to use your existing credentials that you used to download the .iso image, or if needed, create a new account <a href="https://www.redhat.com/wapps/ugc/register.html">here</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-register.png" alt="Connecting to Red Hat from RHEL" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>We won&#8217;t be needing the complete RHEL Server with GUI for this tutorial, so select Software Selection and choose Minimal install.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-software-install.png" alt="RHEL minimal software install" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Next, specify the installation destination. Nothing is needed to be done here as we are using a virtual machine, so you can leave this section after confirming the 20 GB drive that we created earlier.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-installation.png" alt="Confirming the correct RHEL installation" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The last steps involve user settings. From the installation summary, click on <strong>Root password</strong>, and select a root password of your choice. Once finished here, click <strong>*Done</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-root-password.png" alt="Setting up RHEL root password" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>In addition, be sure to create a user other than root to work with. Again, create the credentials, and hit <strong>Done</strong> when finished.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-user-password.png" alt="Setting up RHEL user password" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Once you&#8217;ve finished all the configuration tasks, you&#8217;re ready to begin the installation of RHEL.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-install.png" alt="Installing RHEL" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>It may take a bit of time to prepare the installation and install packages, but once finished installing you&#8217;ll be prompted to reboot the system.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-reboot.png" alt="Rebooting RHEL once installed" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Once the Red Hat Enterprise Linux virtual machine has rebooted, you should now be in the RHEL CLI, ready to begin.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rhel-cli"><a class="anchor" href="#rhel-cli"></a>RHEL CLI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With the RHEL machine running, the last step is to log into your previously created account.
+First, enter the login, and hit enter. Then, enter your password, and hit enter.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-login.png" alt="Logging into the RHEL Machine" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>You&#8217;re now ready to begin the Linux tutorial!</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="index.html">Template Tutorial</a></span>
-  <span class="next"><a href="02-deploy.html">2. Deploy Service</a></span>
+  <span class="prev"><a href="00-introduction.html">Linux</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
