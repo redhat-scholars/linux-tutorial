@@ -1,0 +1,38 @@
+= Getting Started
+include::_attributes.adoc[]
+
+[#linux]
+== What is Linux?
+
+image::introduction/linux-banner.png[Linux banner, 800]
+
+**Linux** is an **open source operating system** (OS). 
+
+An operating system is the software that directly manages a system’s hardware and resources, like CPU, memory, and storage. 
+
+The OS sits between applications and hardware and makes the connections between all of your software and the physical resources that do the work.
+
+[#linux-work]
+== How does Linux work?
+
+Linux was designed to be similar to UNIX, but has evolved to run on a wide variety of hardware from phones to supercomputers.
+
+Every Linux-based OS involves the **Linux kernel**—which manages hardware resources—and a set of software packages that make up the rest of the operating system.
+
+The OS includes some common core components, like the **GNU tools**, among others.
+
+[#linux-include]
+== What does Linux include?
+
+image::introduction/linux-include.png[Components of linux, 800]
+
+Linux is comprised of several important parts, including the:
+
+* Kernel: The core part of Linux, responsible for all major activities of this operating system.
+* System user space: All of the code in an operating system that lives outside of the kernel.
+* Applications: Software applications designed for Linux or Unix systems, mainly distributed as packages.
+
+[#lab-prep]
+== What's in this Linux Deep Dive?
+
+In this Linux Tutorial Deep Dive, you'll be learning a variety of things, from how to install a RHEL virtual machine, to basic Linux commands, to more advanced code editors, SELinux, and more. Let's begin! 
