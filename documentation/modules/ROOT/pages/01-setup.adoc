@@ -1,29 +1,117 @@
 = Setup
 include::_attributes.adoc[]
 
-[#prerequisite]
-== Prerequisite CLI tools
+In order to work begin using Red Hat Enterprise Linux in this lab, you may need to run a RHEL virtual machine on your computer.
+This section will teach you how to download the operating system, install it on VirtualBox, and configure your RHEL machine once started.
 
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/prerequisites-kubernetes.adoc[]
-|===
+[#downloadingrhel]
+== Downloading RHEL
+The first step to working with Red Hat Enterprise Linux is downloading the Universal Base Image from the https://developers.redhat.com/products/rhel/download[Red Hat Developer program].
+On the Red Hat Developer page, scroll down to see the list of avaliable RHEL image downloads, and download the **x86_64 Boot iso**.
 
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/optional-requisites.adoc[]
-|===
+image::setup/download-rhel.png[Download RHEL Button, 800]
 
-[#minikube]
-== Setup Kubernetes
+From here, sign in to your Red Hat account or create a new account, and the download will start automatically.
 
-:profile: my_profile
+image::setup/red-hat-account-login.png[Red Hat Account Login, 800]
 
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/kubernetes-setup.adoc[]
+You now have a bootable RHEL `.iso` that we can use VirtualBox to run. 
 
-And then you are ready for start using Kubernetes:
+[#virtualbox]
+== Setting up VirtualBox
+https://www.virtualbox.org/[VirtualBox] can be used to run operating systems in a special environment, called a virtual machine, on top of the existing operating system.
+We'll use it to install the RHEL VM in this tutorial, so head to the VirtualBox https://www.virtualbox.org/wiki/Downloads[downloads page] to download the correct platform package for your machine.
 
-image::kubelogo.png[]
+image::setup/download-virtualbox.png[Download VirtualBox, 800]
 
-[#downloadtutorial]
-== Get tutorial sources
+After installing and opening VirtualBox, you should be greeted at the homepage, where we'll click on the **New** button to create a new VM.
 
-:tutorial-url: https://github.com/redhat-developer-demos/rhd-tutorial-common.git
-:folder: my_folder
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/download-sources.adoc[]
+image::setup/new-virtualbox.png[Create new Virtualbox, 800]
+
+From here, give this virtual machine a name, for example _RHEL_, and feel free to use the default machine folder location, which stores your virtual machine files.
+Under **Version**, be sure to select _Red Hat (64-bit)_ if it hasn't already pre-populated. Click continue from here.
+
+image::setup/name-new-vm.png[Name & specify your new virtual machine, 800]
+
+Now, while the reccomended memory size is 1024 MB (1 GB), feel free to increase this to 2048 MB (2 GB) for normal usage.
+
+image::setup/virtualbox-ram.png[Allocating RAM to the virtual machine, 800]
+
+Select the default option to create a virtual hard disk now, and hit create. For the hard disk file type, select _VirtualBox Disk Image_ (VDI, reccomended for normal usage), and select _Dynamically allocated_ on the next prompt (also reccomended for daily usage).
+
+image::setup/virtualbox-harddisk.png[Creating a virtual hard disk for the VM, 800]
+
+Next, select the File location and size for the virtual hard disk. You can leave the default location, but select a size of 20 GB to ensure enough space for packages and downloads. Hit create to continue.
+
+image::setup/virtualbox-harddisk-size.png[Selecting the hard disk size, 800]
+
+Finally, we need to attach the downloaded RHEL .iso file to our virtual machine. After selecting our RHEL VM, hit the settings menu.
+
+image::setup/virtualbox-settings.png[Entering the VirtualBox VM settings, 800]
+
+Under the storage section, select the _Empty_ tab under Controller: IDE. Here, we can click on the CD icon and select **Choose a disk file...* to select our downloaded .iso file.
+Navigate to where you downloaded the RHEL .iso, and load it into VirtualBox.
+
+image::setup/virtualbox-storage.png[Adding the .iso file to our operating system, 800]
+
+Once loaded in, hit **Ok** to leave the storage, and return to the VirtualBox dashboard. Now, simply press **Start** to launch Red Hat Enterprise Linux!
+
+image::setup/virtualbox-start.png[Starting the RHEL VM, 800]
+
+[#gettingstarted]
+== Getting Started with RHEL
+Once you start the RHEL virtual machine, you'll be greeted by the Red Hat Boot Loader. Simply click into the VM and press enter to begin with the default RHEL installation process.
+
+image::setup/rhel-bootloader.png[Starting the RHEL VM, 800]
+
+In around a minute, the installation wizard will start and ask you for your language. Select this, and proceed to configure the rest of your RHEL machine.
+
+image::setup/rhel-language-select.png[Selecting the default language for RHEL, 800]
+
+In addition, if you'd like to make the VirtualBox screen larger, head down to the window size control under the GUI and select **Scale to 200%**.
+
+image::setup/virtualbox-window-resize.png[Resizing the VirtualBox window, 800]
+
+The configuration items include selecting your time & date, connecting to a Red Hat account, software selection, specififying installation destination, and root password/user creation.
+
+image::setup/rhel-installation-menu.png[RHEL installation menu, 800]
+
+Firstly, be sure to connect your Red Hat account to RHEL. Feel free to use your existing credentials that you used to download the .iso image, or if needed, create a new account https://www.redhat.com/wapps/ugc/register.html[here].
+
+image::setup/rhel-register.png[Connecting to Red Hat from RHEL, 800]
+
+We won't be needing the complete RHEL Server with GUI for this tutorial, so select Software Selection and choose Minimal install.
+
+image::setup/rhel-software-install.png[RHEL minimal software install, 800]
+
+Next, specify the installation destination. Nothing is needed to be done here as we are using a virtual machine, so you can leave this section after confirming the 20 GB drive that we created earlier.
+
+image::setup/rhel-installation.png[Confirming the correct RHEL installation, 800]
+
+The last steps involve user settings. From the installation summary, click on **Root password**, and select a root password of your choice. Once finished here, click **Done*.
+
+image::setup/rhel-root-password.png[Setting up RHEL root password, 800]
+
+In addition, be sure to create a user other than root to work with. Again, create the credentials, and hit **Done** when finished.
+
+image::setup/rhel-user-password.png[Setting up RHEL user password, 800]
+
+Once you've finished all the configuration tasks, you're ready to begin the installation of RHEL.
+
+image::setup/rhel-install.png[Installing RHEL, 800]
+
+It may take a bit of time to prepare the installation and install packages, but once finished installing you'll be prompted to reboot the system.
+
+image::setup/rhel-reboot.png[Rebooting RHEL once installed, 800]
+
+Once the Red Hat Enterprise Linux virtual machine has rebooted, you should now be in the RHEL CLI, ready to begin.
+
+[#rhel-cli]
+== RHEL CLI
+
+With the RHEL machine running, the last step is to log into your previously created account.
+First, enter the login, and hit enter. Then, enter your password, and hit enter.
+
+image::setup/rhel-login.png[Logging into the RHEL Machine, 800]
+
+You're now ready to begin the Linux tutorial!
