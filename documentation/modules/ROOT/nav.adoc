@@ -8,16 +8,17 @@
 
 
 - 2. Basics
-* xref:02-basics.adoc#linux[Registering a RHEL system]
-* xref:02-basics.adoc#linux[Basic commands]
-* xref:02-basics.adoc#linux[File operations]
-* xref:02-basics.adoc#linux[Installing software]
-* xref:02-basics.adoc#linux[Systemd]
+* xref:02-registering.adoc[Registering a RHEL system]
+* xref:03-basic-commands.adoc[Basic commands]
+* xref:04-file-operations.adoc[File operations]
+* xref:05-installing-software.adoc[Installing software]
+* xref:06-systemd.adoc[Systemd]
+////
 * xref:02-basics.adoc#linux[RHEL User Interface: Cockpit]
 * xref:02-basics.adoc#linux[Installing unpackaged software]
 * xref:02-basics.adoc#linux[Permission & ownerships]
 
-////
+
 - 3. Intermediate
 * xref:03-intermediate.adoc#linux[Terminal multiplexer: tmux]
 * xref:03-intermediate.adoc#linux[Code editor: nano]

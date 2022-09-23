@@ -26,7 +26,7 @@ The system has been registered with ID: <id>
 The registered system name is: localhost.localdomain
 ----
 
-[#registering]
+[#registeringrhel]
 == Unregister a Red Hat Subscription
 
 If you need to unregister your RHEL machine to re-register with a different account or for any other reason, use the following command.

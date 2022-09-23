@@ -1,0 +1,112 @@
+= Installing software
+include::_attributes.adoc[]
+
+The main way to install software on Linux is through a software repository.
+RHEL uses `dnf`, a software package manager that installs, updates, and removes packages.
+Let's take a look at some basic commands using `dnf`.
+
+[#listing]
+== Listing repositories
+
+Using `dnf repolist`, we can list all repositories and available information.
+
+[.console-input]
+[source,bash]
+----
+dnf repolist
+----
+
+[.console-output]
+[source,bash]
+----
+Updating Subscription Management repositories.
+repo id                        repo name
+ansible-2-for-rhel-8-rhui-rpms Red Hat Ansible Engine 2 for RHEL 8 (RPMs) from RHUI
+rhel-8-appstream-rhui-rpms     Red Hat Enterprise Linux 8 for x86_64 - AppStream from RHUI (RPMs)
+rhel-8-baseos-rhui-rpms        Red Hat Enterprise Linux 8 for x86_64 - BaseOS from RHUI (RPMs)
+rhui-client-config-server-8    RHUI Client Configuration Server 8
+----
+
+[#searching]
+== Searching for a package
+
+Using `dnf search`, we can search our repositories for a package type.
+
+[.console-input]
+[source,bash]
+----
+dnf search npm
+----
+
+[.console-output]
+[source,bash]
+----
+Updating Subscription Management repositories.
+Last metadata expiration check: 2:04:09 ago on Fri 23 Sep 2022 04:47:47 PM UTC.
+============================= Name Exactly Matched: npm =============================
+npm.x86_64 : Node.js Package Manager
+----
+
+[#installing]
+== Installing a package
+
+Using `dnf install`, we make sure that a given package and their dependencies are installed on the system.
+
+[.console-input]
+[source,bash]
+----
+dnf install npm
+----
+
+[.console-output]
+[source,bash]
+----
+Updating Subscription Management repositories.
+Last metadata expiration check: 2:06:02 ago on Fri 23 Sep 2022 04:47:47 PM UTC.
+Dependencies resolved.
+=====================================================================================
+ Package          Arch   Version                    Repository                  Size
+=====================================================================================
+Installing:
+ npm              x86_64 1:6.14.11-1.10.24.0.1.module+el8.3.0+10166+b07ac28e
+                                                    rhel-8-appstream-rhui-rpms 3.7 M
+...
+Installed:
+  nodejs-1:10.24.0-1.module+el8.3.0+10166+b07ac28e.x86_64                            
+  nodejs-full-i18n-1:10.24.0-1.module+el8.3.0+10166+b07ac28e.x86_64                  
+  npm-1:6.14.11-1.10.24.0.1.module+el8.3.0+10166+b07ac28e.x86_64                     
+
+Complete!
+----
+
+[#removing]
+== Removing a package
+
+Using `dnf remove`, we can remove the specified package from the system.
+
+[.console-input]
+[source,bash]
+----
+dnf remove npm
+----
+
+[.console-output]
+[source,bash]
+----
+Updating Subscription Management repositories.
+Dependencies resolved.
+=====================================================================================
+ Package          Arch   Version                   Repository                   Size
+=====================================================================================
+Removing:
+ npm              x86_64 1:6.14.11-1.10.24.0.1.module+el8.3.0+10166+b07ac28e
+                                                   @rhel-8-appstream-rhui-rpms  15 M
+
+...
+Removed:
+  nodejs-1:10.24.0-1.module+el8.3.0+10166+b07ac28e.x86_64                            
+  nodejs-full-i18n-1:10.24.0-1.module+el8.3.0+10166+b07ac28e.x86_64                  
+  npm-1:6.14.11-1.10.24.0.1.module+el8.3.0+10166+b07ac28e.x86_64                     
+
+Complete!
+----

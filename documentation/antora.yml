@@ -1,5 +1,5 @@
-name: template-tutorial
-title: Template Tutorial
+name: linux-tutorial
+title: Linux Tutorial
 version: master
 nav:
   - modules/ROOT/nav.adoc

@@ -1,4 +1,4 @@
-= Registering a RHEL system
+= Basic commands
 include::_attributes.adoc[]
 
 While there are plenty of commands avaliable in Linux, there are a certain few that are cruital to your Linux experience.
@@ -32,7 +32,7 @@ who
 [.console-output]
 [source,bash]
 ----
-cedricclyburn console  Sep 22 08:14 
+cclyburn pts/0        2022-09-23 17:55 (107.13.167.190)
 ----
 
 [#man]
@@ -50,26 +50,22 @@ man whoami
 [.console-output]
 [source,bash]
 ----
-WHOAMI(1)                  General Commands Manual                 WHOAMI(1)
+WHOAMI(1)                          User Commands                         WHOAMI(1)
 
 NAME
-     whoami – display effective user id
+       whoami - print effective userid
 
 SYNOPSIS
-     whoami
+       whoami [OPTION]...
 
 DESCRIPTION
-     The whoami utility has been obsoleted by the id(1) utility, and is
-     equivalent to “id -un”.  The command “id -p” is suggested for normal
-     interactive use.
+       Print the user name associated with the current effective user ID.  Same as
+       id -un.
 
-     The whoami utility displays your effective user ID as a name.
+       --help display this help and exit
 
-EXIT STATUS
-     The whoami utility exits 0 on success, and >0 if an error occurs.
-
-SEE ALSO
-     id(1)
+       --version
+              output version information and exit
 ----
 
 [#whatis]
@@ -87,7 +83,7 @@ whatis whoami
 [.console-output]
 [source,bash]
 ----
-whoami(1)                - display effective user id
+whoami(1)                - print effective userid
 ----
 
 [#reboot]
