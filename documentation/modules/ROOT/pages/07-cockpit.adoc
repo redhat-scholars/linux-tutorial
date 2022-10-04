@@ -65,7 +65,7 @@ Here, we can see our RHEL machine's performance, including CPU utilization, memo
 
 image::cockpit/metrics-page.png[Cockpit performance metrics page, 800]
 
-[#using-cockpit-metrics]
+[#using-cockpit-accounts]
 == Using cockpit: Accounts
 
 We can use Cockpit to create new accounts, and modify our existing ones.
@@ -79,7 +79,7 @@ image::cockpit/accounts-user-page.png[Cockpit accounts interface, 800]
 
 Cockpit provides an easy GUI to give our user administrative permission, logs of login history, changing the password, and even modifying authorized SSH keys.
 
-[#using-cockpit-metrics]
+[#using-cockpit-terminal]
 == Using cockpit: Terminal
 
 A simple feature of Cockpit is that it provides a standard shell in a terminal, which allows for the same privileges as if you had logged in through SSH.

@@ -1,0 +1,58 @@
+= Security: SELinux
+include::_attributes.adoc[]
+
+http://www.selinuxproject.org/page/Main_Page[SELinux] is a security architecture for Linux® systems that allows administrators to have more control over who can access the system.
+SELinux defines access controls for the applications, processes, and files on a system. It uses security policies, which are a set of rules that tell SELinux what can or can’t be accessed, to enforce the access allowed by a policy. 
+
+[#selinux-basics]
+== SELinux basics
+
+When enabled, SELinux can run in one of two modes: enforcing or permissive. Use `getenforce` to determine which mode SELinux is in currently. If not already enforcing, use `setenforce 1` to do so. Enforcing mode is the default, and recommended, mode of operation; in enforcing mode SELinux operates normally, enforcing the loaded security policy on the entire system.
+
+[.console-input]
+[source,bash]
+----
+getenforce
+----
+
+[.console-output]
+[source,bash]
+----
+Enforcing
+----
+
+The most important feature of SELinux is logging, and we can learn more about the logs, and denials, by checking the `audit.log`
+
+[.console-input]
+[source,bash]
+----
+tail -f /var/log/audit/audit.log
+----
+
+[.console-output]
+[source,bash]
+----
+type=USER_START msg=audit(1664860614.073:7736): pid=83515 uid=0 auid=1000 ses=13 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='op=PAM:session_open grantors=pam_keyinit,pam_limits,pam_systemd,pam_unix acct="root" exe="/usr/bin/sudo" hostname=? addr=? terminal=/dev/pts/0 res=success'UID="root" AUID="ec2-user"
+----
+
+You may end up using `semange`, a tool used to configure certain elements of SELinux policy without modifying or recompiling policy sources.
+
+[.console-input]
+[source,bash]
+----
+semanage port -l
+----
+
+[.console-output]
+[source,bash]
+----
+ssh_port_t                     tcp      22
+statsd_port_t                  udp      8125
+svn_port_t                     tcp      3690
+svn_port_t                     udp      3690
+svrloc_port_t                  tcp      427
+----
+
+In addition, you may use the `semanage fcontext` command, which is used to change the SELinux context of files. Thus, when using a targeted policy, changes are written to files located in the /etc/selinux/targeted/contexts/files/ directory.
+
+More information can be found from the documentation https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/using_selinux/index#doc-wrapper[here].

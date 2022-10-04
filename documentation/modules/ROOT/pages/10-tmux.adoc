@@ -1,0 +1,69 @@
+= Terminal multiplexer: tmux
+include::_attributes.adoc[]
+
+https://github.com/tmux/tmux[Tmux] is an open source application that adds layers (or "windows," in tmux terminology) to your terminal window so that you can open more than one terminal in a single desktop window.
+
+[#installing-tmux]
+== Installing tmux
+
+To get started with the `tmux` terminal multiplexer, we simply need to install `tmux` using `dnf`.
+
+[.console-input]
+[source,bash]
+----
+dnf install -y tmux
+----
+
+[.console-output]
+[source,bash]
+----
+Updating Subscription Management repositories.
+Last metadata expiration check: 1:31:37 ago on Tue 04 Oct 2022 01:21:12 AM UTC.
+Dependencies resolved.
+===========================================================================================================
+ Package           Architecture        Version                  Repository                            Size
+===========================================================================================================
+Installing:
+ tmux              x86_64              2.7-1.el8                rhel-8-baseos-rhui-rpms              317 k
+
+Transaction Summary
+===========================================================================================================
+Install  1 Package
+...
+Complete!
+----
+
+[#starting-with-tmux]
+== Getting started with tmux
+
+Here, we can now start our first `tmux` session by simply typing `tmux` in the terminal. You'll notice everything stays the same, except for the green line at the bottom of our terminal, indicating we're connected to a `tmux` server as a client.
+
+[.console-input]
+[source,bash]
+----
+tmux
+----
+
+image::tmux.png[tmux dashboard, 800]
+
+Now, we can begin to utilize the pane management capabilities of `tmux` but using shortcuts:
+
+* Horizontal split: `Ctrl-b "`
+* Vertical split: `Ctrl-b %`
+
+You'll need to first do `Ctrl-b`, letting `tmux` know you're about to give it a command, then the key for vertical/horizontal afterwards. For example if you do a horizontal split and a vertical split, your terminal window should look like so.
+
+image::tmux-split.png[tmux split dashboard, 800]
+
+You can now use the `Ctrl-b` with any arrow of your choice to move around the various windows. Pretty neat!
+
+[#tmux-window-management]
+== Window Management with tmux
+
+Perhaps you'd like multiple windows to split into panes and run commands, much like a traditional web browser. 
+`tmux` provides support to do so using the `Ctrl-b c` feature to create new windows.
+
+image::tmux-windows.png[tmux window dashboard, 800]
+
+From here, you can have multiple windows, each with different commands and packages running. 
+To switch around windows, simply use the `Ctrl-b` shortcut, then select which window you'd like to switch to from the green menu bar at the bottom of the terminal (ex. `Ctrl-b 2` for Vim).

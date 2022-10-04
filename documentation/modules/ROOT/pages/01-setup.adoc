@@ -109,7 +109,7 @@ Once the Red Hat Enterprise Linux virtual machine has rebooted, you should now b
 [#rhel-cli]
 == RHEL CLI
 
-With the RHEL machine running, the last step is to log into your previously created account.
+With the RHEL machine running, the last step is to log into your previously created account. We reccomend logging into `root` for this tutorial.
 First, enter the login, and hit enter. Then, enter your password, and hit enter.
 
 image::setup/rhel-login.png[Logging into the RHEL Machine, 800]

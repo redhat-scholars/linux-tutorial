@@ -1,5 +1,5 @@
 = DevNation
-include::_attributes.adoc[]
+include::../_attributes.adoc[]
 
 Welcome to https://developers.redhat.com/devnation[DevNation]! Join developers across the globe for live and virtual events led by Red Hat technology experts. Sessions include weekly tech talks or talk shows, deep dives on key developer topics, hands-on workshops and labs, and other live events.
 

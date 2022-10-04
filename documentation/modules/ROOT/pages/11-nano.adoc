@@ -1,0 +1,131 @@
+= Code editor: nano
+include::_attributes.adoc[]
+
+https://www.nano-editor.org/[Nano] is an easy to use command line text editor for Unix and Linux operating systems. Let's show the power of `nano` by working with a https://quarkus.io/[Quarkus] example application and doing some live coding!
+
+[#installing-nano]
+== Installing nano
+
+To get started with the `nano`editor, we simply need to install `nano` using `dnf`.
+
+[.console-input]
+[source,bash]
+----
+dnf install -y nano
+----
+
+[.console-output]
+[source,bash]
+----
+Updating Subscription Management repositories.
+Last metadata expiration check: 2:15:10 ago on Tue 04 Oct 2022 01:21:12 AM UTC.
+Dependencies resolved.
+========================================================================================================
+ Package          Architecture       Version                  Repository                           Size
+========================================================================================================
+Installing:
+ nano             x86_64             2.9.8-1.el8              rhel-8-baseos-rhui-rpms             580 k
+...
+Complete!
+----
+
+[#installing-quarkus]
+== Installing quarkus
+
+Next, let's also install Quarkus, and any other dependencies so we can create a template "Getting Started" application.
+Based off of the https://quarkus.io/get-started/[Get Started] instructions, we can use the following command to install the Quarkus CLI.
+
+[.console-input]
+[source,bash]
+----
+curl -Ls https://sh.jbang.dev | bash -s - trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/
+curl -Ls https://sh.jbang.dev | bash -s - app install --fresh --force quarkus@quarkusio
+----
+
+[.console-output]
+[source,bash]
+----
+Downloading JBang...
+Installing JBang...
+Downloading JDK 11. Be patient, this can take several minutes...
+...
+[jbang] Setting up JBang environment...
+Please start a new Shell for changes to take effect
+----
+
+[#starting-with-nano]
+== Getting started with nano
+
+First, let's return to `tmux` to have a few windows to work with. Then, let's create the example application so we have code to edit with `nano`.
+
+[.console-input]
+[source,bash]
+----
+tmux
+quarkus create && cd code-with-quarkus
+----
+
+[.console-output]
+[source,bash]
+----
+Creating an app (default project type, see --help).
+Looking for the newly published extensions in registry.quarkus.io
+...
+[SUCCESS] ✅  quarkus project has been successfully generated in:
+--> /home/ec2-user/code-with-quarkus
+----
+
+Now, let's run the application using `quarkus dev`, and open a new pane using `tmux` in order to check that the application is running.
+
+[.console-input]
+[source,bash]
+----
+quarkus dev
+Ctrl-b %
+curl -s localhost:8080/hello
+----
+
+[.console-output]
+[source,bash]
+----
+Creating an app (default project type, see --help).
+Looking for the newly published extensions in registry.quarkus.io
+...
+[SUCCESS] ✅  quarkus project has been successfully generated in:
+--> /home/ec2-user/code-with-quarkus
+----
+
+And a result from the `curl` command as follows.
+
+[.console-output]
+[source,bash]
+----
+Hello from RESTEasy Reactive
+----
+
+Let's use `nano` to change our code on the fly, and modify the RESTful endpoint. Creating one more pane, let's open up the `GreetingResource.java` file using `nano` and change "Hello from RESTEasy Reactive" to "hello".
+
+[.console-input]
+[source,bash]
+----
+Ctrl-b "
+nano code-with-quarkus/src/main/java/org/acme/GreetingResource.java
+----
+
+Now, the Quarkus application will automatically refresh, and upon a new `curl` command, you'll notice the result has updated.
+
+[.console-input]
+[source,bash]
+----
+curl -s localhost:8080/hello
+----
+
+[.console-output]
+[source,bash]
+----
+hello
+----
+
+image::nano.png[Nano dashboard, 800]
+
+There are plenty of more shortcuts you can use with `nano` to really utilize the full power of the editor, and you can learn more using this official https://www.nano-editor.org/dist/latest/cheatsheet.html[shortcuts guide].

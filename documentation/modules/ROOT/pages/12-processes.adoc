@@ -1,0 +1,62 @@
+= Finding & killing processes
+include::_attributes.adoc[]
+
+A _process_ is associated with any program running on your system, and is used to manage and monitor a program’s memory usage, processor time, and I/O resources. Let's take a look at how we can display processes, and kill them if needed.
+
+[#using-ps]
+== Using ps
+
+The `ps` command without any options displays information about processes that are bound by the controlling terminal. In this current state, we only have out `bash` and `ps`  shown.
+
+[.console-input]
+[source,bash]
+----
+ps
+----
+
+[.console-output]
+[source,bash]
+----
+    PID TTY          TIME CMD
+  80083 pts/0    00:00:00 bash
+  81880 pts/0    00:00:00 ps
+----
+
+For finding the most amount of information a user usually needs to understand the current state of their system’s running processes, we can use `aux ps`.
+
+[.console-input]
+[source,bash]
+----
+aux ps
+----
+
+[.console-output]
+[source,bash]
+----
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  1.2 242416 10120 ?        Ss   Oct03   0:07 /usr/lib/systemd/systemd --switched-r
+root           2  0.0  0.0      0     0 ?        S    Oct03   0:00 [kthreadd]
+...
+ec2-user   81879  0.0  0.4 268548  4048 pts/0    R+   04:02   0:00 ps aux
+----
+
+This command displays plenty of useful information, including a username column, CPU/Memory usage, when the process was started, and more.
+
+[#using-kill]
+== Using kill
+
+If there are unnecessary processes running on your machine, you no longer need a process, or it is malfunctioning, you can use `kill` to end the process. As we've seen before, we are able to get a `PID` of all of our processes using `aux ps`. If we needed to kill `tmux`, which has a `PID` of 80626, we would do the following.
+
+[.console-input]
+[source,bash]
+----
+kill -9 80626
+----
+
+Likewise, if we'd like to kill all the processes with the specified name in the system, we could use `killall`
+
+[.console-input]
+[source,bash]
+----
+killall -9 tmux
+----

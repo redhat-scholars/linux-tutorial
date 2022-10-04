@@ -17,15 +17,6 @@
 * xref:08-unpacked-software.adoc[Installing unpackaged software]
 * xref:09-permissions.adoc[Permission & ownerships]
 
-
-- 4. Free Resources
-* xref:04-resources.adoc#linux[Cheat sheets]
-* xref:04-resources.adoc#linux[Red Hat training]
-* xref:04-resources.adoc#linux[Books]
-* xref:04-resources.adoc#linux[Labs]
-* xref:04-resources.adoc#linux[DevNation]
-
-////
 - 3. Intermediate
 * xref:03-intermediate.adoc#linux[Terminal multiplexer: tmux]
 * xref:03-intermediate.adoc#linux[Code editor: nano]
@@ -34,3 +25,11 @@
 * xref:03-intermediate.adoc#linux[Looking at open ports]
 * xref:03-intermediate.adoc#linux[Advanced SSH]
 * xref:03-intermediate.adoc#linux[Security: SELinux]
+
+- 4. Free Resources
+* xref:resources/cheat-sheets.adoc[Cheat sheets]
+* xref:resources/training.adoc[Red Hat training]
+* xref:resources/books.adoc[Books]
+* xref:resources/labs.adoc[Labs]
+* xref:resources/devnation.adoc[DevNation]
+

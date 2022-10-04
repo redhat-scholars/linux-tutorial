@@ -1,0 +1,81 @@
+= Advanced SSH
+include::_attributes.adoc[]
+
+SSH (Secure Shell) is a protocol which facilitates secure communications between two systems using a client-server architecture and allows users to log in to server host systems remotely.
+
+[#using-ssh-keygen]
+== Using ssh-keygen
+
+`ssh-keygen` is a tool for creating new authentication key pairs for SSH. Such key pairs are used for automating logins, single sign-on, and for authenticating hosts.
+There's no need to use arguments for this tool, as it will prompt for for a file to store keys, and associated passphrase.
+
+[.console-input]
+[source,bash]
+----
+ssh-keygen
+----
+
+[.console-output]
+[source,bash]
+----
+Enter file in which to save the key (/home/ec2-user/.ssh/id_rsa): ssh-key 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in ssh-key.
+Your public key has been saved in ssh-key.pub.
+The key fingerprint is:
+SHA256:sS8LTj0bVA+ECZqbrEvHuiAYIQuuqcbjT6vCjSusp48 ec2-user@ip-172-31-17-21.us-east-2.compute.internal
+The key's randomart image is:
++---[RSA 3072]----+
+|      .. o.      |
+|     o  o.       |
+|+   o   . o      |
+|+o . o   + o     |
+|o.  +   S   .    |
+|oo o   o .       |
+|X =.o o = .      |
+|=@o=.o . *       |
+|EBX+  . o        |
++----[SHA256]-----+
+----
+
+Congrats! You now have a public and private key that you can use to authenticate. Now, let's place the public key on your server so you can use SSH-key-based authentication to sign on.
+
+[#using-ssh-copy-id]
+== Using ssh-copy-id
+
+The `ssh-copy-id` command allows you to add a public key to a remote machine's authorized_keys file. The command goes as follows.
+
+[.console-input]
+[source,bash]
+----
+ssh-copy-id username@remote_host_ip
+----
+
+[.console-output]
+[source,bash]
+----
+The authenticity of host 'remote_host_ip' can't be established.
+ECDSA key fingerprint is f1:d7:e8:f2:44:fe:34:71:e6:11:98:da:d9:3e:51:ff.
+Are you sure you want to continue connecting (yes/no)? yes
+----
+
+Now, after typing in your password, the tool will copy the contents of your SSH key into the remote account's authorized key folder, and you can use `ssh` normally to login.
+
+[#using-scp]
+== Using scp
+
+Similarly, you can use the secure copy command (`scp`), in conjunction with ssh key authentication, for an even more secure means of copying files to your remote Linux servers.
+Use the format of the following command to send a file to your remote server using your ssh key.
+
+[.console-input]
+[source,bash]
+----
+scp -i ~/.ssh/id_rsa.pub filename username@remote_host_ip:/home/username/filename
+----
+
+[#ssh-config]
+== SSH configuration
+
+SSH clients can be configuring using a global or local configuration file to save time and typing frequently used ssh client command-line options such as port, user, hostname, and more.
+This is found in the `.ssh/config` file on a system, and more information can be found https://linux.die.net/man/5/ssh_config[here].

@@ -1,5 +1,5 @@
 = Red Hat training
-include::_attributes.adoc[]
+include::../_attributes.adoc[]
 
 Learn the basics of Linux through official Red Hat training.
 

@@ -1,0 +1,57 @@
+= Gathering OS stats
+include::_attributes.adoc[]
+
+While we can use the command `top` to see a process list, we can use `iotop` as a I/O monitor, which can help pinpoints processes that use a high amount of IO (input/output) requests on your machine.
+In addition, let's cover some other ways to gather RHEL OS stats.
+
+[#using-iotop]
+== Using iotop
+
+Installing `iotop` is similar to and other tool, where we can use `dnf`.
+
+[.console-input]
+[source,bash]
+----
+sudo dnf install -y top iotop
+----
+
+[.console-output]
+[source,bash]
+----
+Updating Subscription Management repositories.
+Last metadata expiration check: 2:55:42 ago on Tue 04 Oct 2022 01:21:12 AM UTC.
+Dependencies resolved.
+========================================================================================================
+ Package           Architecture       Version                 Repository                           Size
+========================================================================================================
+Installing:
+ iotop             noarch             0.6-17.el8              rhel-8-baseos-rhui-rpms              67 k
+...
+Complete!
+----
+
+Now, we can use `iotop` for a real-time display of I/O bandwidth read and write on our system.
+
+[.console-input]
+[source,bash]
+----
+iotop
+----
+
+[.console-output]
+[source,bash]
+----
+Total DISK READ :	0.00 B/s | Total DISK WRITE :       0.00 B/s
+Actual DISK READ:	0.00 B/s | Actual DISK WRITE:       0.00 B/s
+    TID  PRIO  USER     DISK READ DISK WRITE>    COMMAND                                                
+      1 be/4 root        0.00 B/s    0.00 B/s systemd --switched-root --system --deserialize 16
+      2 be/4 root        0.00 B/s    0.00 B/s [kthreadd]
+----
+
+[#other-ways]
+== Other ways to collect stats
+
+We can also use `top` (linux processes), `ip` (configuring network interfaces), and `df` (disk space available) to gather OS stats.
+In addition, all of this information is available in Cockpit!
+
+image::cockpit-stats.png[Cockpit metrics dashboard, 800]

@@ -1,5 +1,5 @@
 = Labs
-include::_attributes.adoc[]
+include::../_attributes.adoc[]
 
 Learn the basics of Linux through Red Hat Enterprise Linux Self-Paced Labs.
 
