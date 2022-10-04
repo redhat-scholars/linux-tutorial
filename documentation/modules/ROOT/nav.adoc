@@ -18,7 +18,6 @@
 * xref:09-permissions.adoc[Permission & ownerships]
 
 - 3. Intermediate
-- 3. Intermediate
 * xref:10-tmux.adoc[Terminal multiplexer: tmux]
 * xref:11-nano.adoc[Code editor: nano]
 * xref:12-processes.adoc[Finding & killing processes]
