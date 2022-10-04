@@ -1,0 +1,20 @@
+= Books
+include::_attributes.adoc[]
+
+Learn the basics of Linux through official Red Hat Developer E-books.
+
+[#red-hat-books]
+== Red Hat Universal Base Images (UBI) Book
+
+image::book.png[Red Hat Universal Base Images (UBI) book, 200]
+
+As a developer, you need a source of container base images that have many of the qualities of Red Hat Enterprise Linux, but that can be consumed by your users/customers without acquiring a Red Hat subscription. Red Hat provides this with Universal Base Images (UBI), a subset of Red Hat Enterprise Linux for building applications in containers - what’s different is they have their own unique EULA which means they are freely redistributable.
+Access the book https://developers.redhat.com/e-books/red-hat-universal-base-images-ubi[here].
+
+[#red-hat-coloring-books]
+== SELinux Coloring Book
+
+image::coloring-book.png[SELinux Coloring Book, 200]
+
+Learn the basics of SELinux, including type enforcement, Multi-Category Security (MCS) Enforcement, and Multi-Level Security (MLS) Enforcement, with the help of some friendly cats and dogs!
+Access the book https://developers.redhat.com/e-books/selinux-coloring-book[here].

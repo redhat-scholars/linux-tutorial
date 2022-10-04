@@ -1,0 +1,174 @@
+= Installing unpackaged software
+include::_attributes.adoc[]
+
+In some cases, you'll need to install an application from it's source code.
+Let's take a look at how to compile and install new software using RHEL.
+
+[#downloading-source]
+== Downloading the source code
+
+While there are plenty of applications we could install, let's take https://www.vim.org/[Vim] for example. 
+Vim is a popular text editor used in most Linux systems, and is simple to use. 
+First, let's go to the https://github.com/vim/vim/tags[release page] for Vim, and download the most recent `tar.gz`, which contains the software in a compressed tar format.
+
+image::software/github.png[Github release page, 800]
+
+Right click and copy the link address for this specific release so we can then download it in our RHEL machine.
+Next, let's use `curl` to download this specific `tar.gz` link to our local machine.
+
+[.console-input]
+[source,bash]
+----
+curl -OL https://github.com/vim/vim/archive/refs/tags/v9.0.0652.tar.gz
+----
+
+[.console-output]
+[source,bash]
+----
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 16.0M  100 16.0M    0     0  45.5M      0 --:--:-- --:--:-- --:--:-- 45.5M
+----
+
+After a few seconds, we'll see that the file has been downloaded in our current directory.
+
+[.console-input]
+[source,bash]
+----
+ls
+----
+
+[.console-output]
+[source,bash]
+----
+Downloads  file1.txt  file2.txt  v9.0.0652.tar.gz
+----
+
+[#unpacking-file]
+== Extracting the archive
+
+To extract the source code from the package, we can use the `tar` command with a few arguments like so.
+
+[.console-input]
+[source,bash]
+----
+tar xvf v9.0.0652.tar.gz
+----
+
+After everything has been extracted, you'll now have a new file in your local directory, named `v9.0.0652` or the respective name of the downloaded `tar` file.
+Let's do a quick `cd` command to change directories into this new folder, and list the items in our directory.
+
+[.console-input]
+[source,bash]
+----
+cd vim-9.0.0652
+ls
+----
+
+[.console-output]
+[source,bash]
+----
+ci               Filelist  nsis       README.md       runtime  uninstall.txt
+configure        LICENSE   pixmaps    README.txt      src      vimtutor.bat
+CONTRIBUTING.md  Makefile  READMEdir  README_VIM9.md  tools    vimtutor.com
+----
+
+[#installing-souce]
+== Installing the source code
+
+Now that we're in the newly extracted folder, we can install the unpackaged software.
+Firstly, however, we need to install the development tools, which include gcc, our C compiler, and more.
+This can be done by using `dnf` as we have done before, with the following command. You'll also need a terminal library, for this we can use `ncurses`.
+
+[.console-input]
+[source,bash]
+----
+dnf groupinstall "Development Tools" && dnf install ncurses-devel
+----
+
+[.console-output]
+[source,bash]
+----
+Last metadata expiration check: 1:39:22 ago on Mon 03 Oct 2022 06:02:11 PM UTC.
+Dependencies resolved.
+=================================================================================================
+ Package                         Arch   Version                 Repository                  Size
+=================================================================================================
+Upgrading:
+ glibc                           x86_64 2.28-189.5.el8_6        rhel-8-baseos-rhui-rpms    2.2 M
+ glibc-all-langpacks             x86_64 2.28-189.5.el8_6        rhel-8-baseos-rhui-rpms     25 M
+ glibc-common                    x86_64 2.28-189.5.el8_6        rhel-8-baseos-rhui-rpms    1.3 M
+ glibc-gconv-extra               x86_64 2.28-189.5.el8_6        rhel-8-baseos-rhui-rpms    1.5 M
+ glibc-langpack-en               x86_64 2.28-189.5.el8_6        rhel-8-baseos-rhui-rpms    834 k
+ libgcc                          x86_64 8.5.0-10.1.el8_6        rhel-8-baseos-rhui-rpms     80 k
+...
+Complete!
+----
+
+Now, we can run the `configure` script in the folder, using the following command. This will analyze the system, and produce a Makefile that contains the logic to build and install the package.
+
+[.console-input]
+[source,bash]
+----
+./configure
+----
+
+[.console-output]
+[source,bash]
+----
+configure: loading cache auto/config.cache
+checking whether make sets $(MAKE)... yes
+checking for gcc... gcc
+checking whether the C compiler works... yes
+...
+config.status: creating auto/config.h
+----
+
+Now, we can compile the source code to generate the binaries using the `make` command.
+
+[.console-input]
+[source,bash]
+----
+make
+----
+
+[.console-output]
+[source,bash]
+----
+Starting make in the src directory.
+...
+make[1]: Leaving directory '/home/ec2-user/vim-9.0.0652/src'
+----
+
+Almost there! After `make` completes, the binary files are ready to install.
+
+[.console-input]
+[source,bash]
+----
+make install
+----
+
+[.console-output]
+[source,bash]
+----
+Starting make in the src directory.
+...
+make[1]: Leaving directory '/home/ec2-user/vim-9.0.0652/src'
+----
+
+Congratulations! `vim` should now be installed properly on your system, and you can double check the installation with the following command.
+
+[.console-input]
+[source,bash]
+----
+vim --version
+----
+
+[.console-output]
+[source,bash]
+----
+VIM - Vi IMproved 9.0 (2022 Jun 28, compiled Oct  3 2022 19:57:18)
+Included patches: 1-652
+Compiled by ec2-user@ip-172-31-17-21.us-east-2.compute.internal
+----

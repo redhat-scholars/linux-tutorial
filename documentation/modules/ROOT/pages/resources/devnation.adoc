@@ -1,0 +1,28 @@
+= DevNation
+include::_attributes.adoc[]
+
+Welcome to https://developers.redhat.com/devnation[DevNation]! Join developers across the globe for live and virtual events led by Red Hat technology experts. Sessions include weekly tech talks or talk shows, deep dives on key developer topics, hands-on workshops and labs, and other live events.
+
+[#cloud-native-dev]
+== Cloud native developer
+
+Time to dust off the mental cobwebs and get started with containers! Learn the basics and make a pit stop in our developer sandbox.
+Access this learning path https://developers.redhat.com/devnation/cloud-native-developer[here].
+
+[#kubernetes-and-friends]
+== Kubernetes and friends
+
+Spend time getting to know your new friend - Kubernetes. Learn more about this open source container orchestration system and make notes on commands, tips, and tricks to bring it to life.
+Access this learning path https://developers.redhat.com/devnation/kubernetes-and-friends[here].
+
+[#event-driven-architecture]
+== Event-driven architecture
+
+No one likes a bad communicator! How do you make all the information flow between apps, microservices and connected devices? Kafka and Knative have the answers.
+Access this learning path https://developers.redhat.com/devnation/event-driven-architecture[here].
+
+[#devops-to-gitops]
+== From DevOps to GitOps
+
+Everyone likes a camp romance. Argo Cd and Tekton are a match made in Kubernetes heaven. See what makes them tick!
+Access this learning path https://developers.redhat.com/devnation/devops-gitops[here].

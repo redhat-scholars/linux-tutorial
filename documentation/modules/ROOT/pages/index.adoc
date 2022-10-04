@@ -34,11 +34,9 @@ Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now
 * xref:04-file-operations.adoc[File operations]
 * xref:05-installing-software.adoc[Installing software]
 * xref:06-systemd.adoc[Systemd]
-////
-* xref:02-basics.adoc#linux[RHEL User Interface: Cockpit]
-* xref:02-basics.adoc#linux[Installing unpackaged software]
-* xref:02-basics.adoc#linux[Permission & ownerships]
-
+* xref:07-cockpit.adoc[RHEL User Interface: Cockpit]
+* xref:08-unpackaged-software.adoc[Installing unpackaged software]
+* xref:09-permissions.adoc[Permission & ownerships]
 
 [.tile]
 - 3. Intermediate
@@ -52,9 +50,8 @@ Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now
 
 [.tile]
 - 4. Free Resources
-* xref:04-resources.adoc#linux[Cheat sheets]
-* xref:04-resources.adoc#linux[Red Hat training]
-* xref:04-resources.adoc#linux[Books]
-* xref:04-resources.adoc#linux[Labs]
-* xref:04-resources.adoc#linux[DevNation]
-////
+* xref:resources/cheat-sheets.adoc[Cheat sheets]
+* xref:resources/training.adoc[Red Hat training]
+* xref:resources/books.adoc[Books]
+* xref:resources/labs.adoc[Labs]
+* xref:resources/devnation.adoc[DevNation]

@@ -44,7 +44,7 @@ systemctl status sshd
 ----
 
 [#service-systemd]
-== Starting/stop a service
+== Start/stop a service
 
 Using `systemctl start` or `systemctl stop`, we can start/stop a service.
 

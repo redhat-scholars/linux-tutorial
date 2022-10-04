@@ -1,0 +1,13 @@
+= Red Hat training
+include::_attributes.adoc[]
+
+Learn the basics of Linux through official Red Hat training.
+
+[#red-hat-training]
+==  Red Hat Enterprise Linux Technical Overview (RH024)
+
+image::training.png[Red Hat training, 800]
+
+This course is a series of no-cost, on-demand, online videos that provide a technical introduction to Red Hat Enterprise Linux for IT professionals.
+Access the course https://www.redhat.com/en/services/training/rh024-red-hat-linux-technical-overview[here].
+The videos will demonstrate basic practical techniques of Linux use and system administration tasks for professionals new to the operating system who are interested in preparing for further study. You will be introduced to why Linux and the open source development model is so important in today's computing environment.
