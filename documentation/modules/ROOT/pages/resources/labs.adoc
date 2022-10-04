@@ -1,0 +1,12 @@
+= Labs
+include::../_attributes.adoc[]
+
+Learn the basics of Linux through Red Hat Enterprise Linux Self-Paced Labs.
+
+[#red-hat-labs]
+== Red Hat Universal Base Images (UBI) Book
+
+image::rhel-labs.png[Red Hat Enterprise Linux Self-Paced Labs, 800]
+
+These interactive labs provide you with a pre-configured Red Hat® Enterprise Linux® instance to experiment, learn, and see how Red Hat can help you solve real-world problems. It runs entirely in your browser, enabling you to learn more about our technology at your own pace.
+Access the labs https://lab.redhat.com/[here].

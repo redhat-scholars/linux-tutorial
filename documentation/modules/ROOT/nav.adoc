@@ -6,16 +6,16 @@
 ** xref:01-setup.adoc#gettingstarted[Getting started with RHEL]
 ** xref:01-setup.adoc#rhel-cli[RHEL CLI]
 
-////
+
 - 2. Basics
-* xref:02-basics.adoc#linux[Registering a RHEL system]
-* xref:02-basics.adoc#linux[Basic commands]
-* xref:02-basics.adoc#linux[File operations]
-* xref:02-basics.adoc#linux[Installing software]
-* xref:02-basics.adoc#linux[Systemd]
-* xref:02-basics.adoc#linux[RHEL User Interface: Cockpit]
-* xref:02-basics.adoc#linux[Installing unpackaged software]
-* xref:02-basics.adoc#linux[Permission & ownerships]
+* xref:02-registering.adoc[Registering a RHEL system]
+* xref:03-basic-commands.adoc[Basic commands]
+* xref:04-file-operations.adoc[File operations]
+* xref:05-installing-software.adoc[Installing software]
+* xref:06-systemd.adoc[Systemd]
+* xref:07-cockpit.adoc[RHEL User Interface: Cockpit]
+* xref:08-unpacked-software.adoc[Installing unpackaged software]
+* xref:09-permissions.adoc[Permission & ownerships]
 
 - 3. Intermediate
 * xref:03-intermediate.adoc#linux[Terminal multiplexer: tmux]
@@ -27,9 +27,9 @@
 * xref:03-intermediate.adoc#linux[Security: SELinux]
 
 - 4. Free Resources
-* xref:04-resources.adoc#linux[Cheat sheets]
-* xref:04-resources.adoc#linux[Red Hat training]
-* xref:04-resources.adoc#linux[Books]
-* xref:04-resources.adoc#linux[Labs]
-* xref:04-resources.adoc#linux[DevNation]
-////
+* xref:resources/cheat-sheets.adoc[Cheat sheets]
+* xref:resources/training.adoc[Red Hat training]
+* xref:resources/books.adoc[Books]
+* xref:resources/labs.adoc[Labs]
+* xref:resources/devnation.adoc[DevNation]
+

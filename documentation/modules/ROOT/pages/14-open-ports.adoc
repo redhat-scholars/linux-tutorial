@@ -1,0 +1,135 @@
+= Looking at open ports
+include::_attributes.adoc[]
+
+Configuring and maintaining a firewall is a vital sysadmin skill, and Linux is no exception. Let's learn how to find if a network port is open or not, and make modifications.
+
+[#using-ss]
+== Using ss
+
+To see if a program or process is listening on a port, ready to accept a packet, use the `ss` program.
+
+[.console-input]
+[source,bash]
+----
+ss -nutlp
+----
+
+[.console-output]
+[source,bash]
+----
+Netid    State     Recv-Q     Send-Q         Local Address:Port         Peer Address:Port    Process    
+udp      UNCONN    0          0                  127.0.0.1:323               0.0.0.0:*                  
+udp      UNCONN    0          0                      [::1]:323                  [::]:*                  
+tcp      LISTEN    0          128                  0.0.0.0:22                0.0.0.0:*                  
+tcp      LISTEN    0          128                     [::]:22                   [::]:*                  
+tcp      LISTEN    0          128                        *:9090                    *:*                
+----
+
+[#using-firewall-cmd]
+== Using firewall-cmd
+
+`firewall-cmd` is a front-end tool for managing the `firewalld` daemon, which interfaces with the Linux kernel's netfilter framework. Let's install it using `dnf`.
+
+[.console-input]
+[source,bash]
+----
+dnf install firewalld
+----
+
+Now, we'll need to start `firewalld` and enable it to auto-start at system boot.
+
+[.console-input]
+[source,bash]
+----
+systemctl start firewalld && systemctl enable firewalld
+----
+
+Finally, let's see the machine's ports, services, and firewall rule by using `firewall-cmd`
+
+[.console-input]
+[source,bash]
+----
+firewall-cmd --list-all
+----
+
+[.console-output]
+[source,bash]
+----
+public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: eth0
+  sources: 
+  services: cockpit dhcpv6-client ssh
+  ports: 
+  protocols: 
+  forward: no
+  masquerade: no
+  forward-ports: 
+  source-ports: 
+  icmp-blocks: 
+  rich rules: 
+----
+
+In order to add a port to the firewall and make the change permanent, let's use the following command to add port `8080`.
+
+[.console-input]
+[source,bash]
+----
+firewall-cmd --permanent --add-port=8080/tcp && firewall-cmd
+success
+----
+
+[.console-output]
+[source,bash]
+----
+success
+----
+
+[#using-nmap]
+== Using nmap
+
+https://nmap.org/[Nmap] (Network mapper) is an open-source Linux tool for network and security auditing. Let's install it using `dnf`.
+
+[.console-input]
+[source,bash]
+----
+dnf install -y nmap
+----
+
+[.console-output]
+[source,bash]
+----
+Updating Subscription Management repositories.
+Last metadata expiration check: 3:39:16 ago on Tue 04 Oct 2022 01:21:12 AM UTC.
+Dependencies resolved.
+========================================================================================================
+ Package             Architecture     Version                Repository                            Size
+========================================================================================================
+Installing:
+ nmap                x86_64           2:7.70-6.el8           rhel-8-appstream-rhui-rpms           5.8 M
+...
+Complete!
+----
+
+With `nmap`, we can do scans on IP addresses, using the following format: `nmap -sS -P0 <IP>`. For example, we can do a scan for Google's IP address, `8.8.8.8`.
+
+[.console-input]
+[source,bash]
+----
+sudo nmap -sS -P0 8.8.8.8
+----
+
+[.console-output]
+[source,bash]
+----
+Starting Nmap 7.70 ( https://nmap.org ) at 2022-10-04 05:02 UTC
+Nmap scan report for dns.google (8.8.8.8)
+Host is up (0.011s latency).
+Not shown: 998 filtered ports
+PORT    STATE SERVICE
+53/tcp  open  domain
+443/tcp open  https
+
+Nmap done: 1 IP address (1 host up) scanned in 21.39 seconds
+----

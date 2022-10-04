@@ -7,7 +7,7 @@ This section will teach you how to download the operating system, install it on 
 [#downloadingrhel]
 == Downloading RHEL
 The first step to working with Red Hat Enterprise Linux is downloading the Universal Base Image from the https://developers.redhat.com/products/rhel/download[Red Hat Developer program].
-On the Red Hat Developer page, scroll down to see the list of avaliable RHEL image downloads, and download the **x86_64 Boot iso**.
+On the Red Hat Developer page, scroll down to see the list of available RHEL image downloads, and download the **x86_64 Boot iso**.
 
 image::setup/download-rhel.png[Download RHEL Button, 800]
 
@@ -37,7 +37,7 @@ Now, while the reccomended memory size is 1024 MB (1 GB), feel free to increase 
 
 image::setup/virtualbox-ram.png[Allocating RAM to the virtual machine, 800]
 
-Select the default option to create a virtual hard disk now, and hit create. For the hard disk file type, select _VirtualBox Disk Image_ (VDI, reccomended for normal usage), and select _Dynamically allocated_ on the next prompt (also reccomended for daily usage).
+Select the default option to create a virtual hard disk now, and hit create. For the hard disk file type, select _VirtualBox Disk Image_ (VDI, recommended for normal usage), and select _Dynamically allocated_ on the next prompt (also reccomended for daily usage).
 
 image::setup/virtualbox-harddisk.png[Creating a virtual hard disk for the VM, 800]
 
@@ -72,7 +72,7 @@ In addition, if you'd like to make the VirtualBox screen larger, head down to th
 
 image::setup/virtualbox-window-resize.png[Resizing the VirtualBox window, 800]
 
-The configuration items include selecting your time & date, connecting to a Red Hat account, software selection, specififying installation destination, and root password/user creation.
+The configuration items include selecting your time & date, connecting to a Red Hat account, software selection, specifying installation destination, and root password/user creation.
 
 image::setup/rhel-installation-menu.png[RHEL installation menu, 800]
 
@@ -109,7 +109,7 @@ Once the Red Hat Enterprise Linux virtual machine has rebooted, you should now b
 [#rhel-cli]
 == RHEL CLI
 
-With the RHEL machine running, the last step is to log into your previously created account.
+With the RHEL machine running, the last step is to log into your previously created account. We recommend logging into `root` for this tutorial.
 First, enter the login, and hit enter. Then, enter your password, and hit enter.
 
 image::setup/rhel-login.png[Logging into the RHEL Machine, 800]

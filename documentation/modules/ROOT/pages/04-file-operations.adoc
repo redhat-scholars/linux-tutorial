@@ -1,0 +1,89 @@
+= File operations
+include::_attributes.adoc[]
+
+Starting out in Linux, you'll spend a great deal of time interacting with files and directories (folders). 
+Here, you'll learn basic file operations that can help you work in your Linux enviroment.
+
+[#mkdir]
+== Using `mkdir`
+
+The `mkdir` command is used to make new directories in Linux. It creates a directory in the current working directory, unless some other path is specified.
+
+[.console-input]
+[source,bash]
+----
+mkdir Downloads
+----
+
+
+[#ls]
+== Using `ls`
+
+To list files on a Linux system, you can use the command `ls`. 
+It's one of the most commonly used and useful file operation commands. 
+
+[.console-input]
+[source,bash]
+----
+ls
+----
+
+[.console-output]
+[source,bash]
+----
+Downloads
+----
+
+While a standard `ls` command will list files in your current directory, you can use it to list files in any directory within your machine by specifying the directory.
+
+[.console-input]
+[source,bash]
+----
+ls Downloads
+----
+
+[#cp]
+== Using `cp`
+
+The `cp` command stands for copy, and will copy a file to another name or another location.
+Let's use this command in addition with `touch`, which is the easiest way to create a new file in Linux.
+Firstly, let's create a new file called `file1.txt`.
+
+[.console-input]
+[source,bash]
+----
+touch file1.txt
+----
+
+Now, let's copy this file into the newly created `Downloads` folder.
+
+[.console-input]
+[source,bash]
+----
+cp file1.txt Downloads/file2.txt
+ls Downloads
+----
+
+[.console-output]
+[source,bash]
+----
+file2.txt
+----
+
+[#mv]
+== Using `mv`
+
+The "mv" command is used to move a file to another destination or rename the file to a new name.
+
+[.console-input]
+[source,bash]
+----
+mv Downloads/file2.txt ~
+ls
+----
+
+[.console-output]
+[source,bash]
+----
+Downloads  file1.txt  file2.txt
+----

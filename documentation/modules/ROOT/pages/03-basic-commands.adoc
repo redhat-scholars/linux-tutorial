@@ -1,0 +1,98 @@
+= Basic commands
+include::_attributes.adoc[]
+
+While there are plenty of commands available in Linux, there are a certain few that are crucial to your Linux experience.
+Most likely, you'll end up using these commands daily.
+
+[#whoami]
+== Using `whoami`
+
+The `whoami` command prints the user name of the currently logged-in user. Running the below command would result in the output of the username associated with current effective user id.
+
+[.console-input]
+[source,bash]
+----
+whoami
+----
+
+[.console-output]
+[source,bash]
+----
+cclyburn
+----
+
+In addition, the `who` command is used to provide more system information, including when the system has booted last time, a list of logged-in users, and the system’s current run level.
+
+[.console-input]
+[source,bash]
+----
+who
+----
+
+[.console-output]
+[source,bash]
+----
+cclyburn pts/0        2022-09-23 17:55 (107.13.167.190)
+----
+
+[#man]
+== Using `man`
+
+The `man` command prints documentation for any Linux command on the system. 
+You can learn about usage, related packages, and more from `man` pages.
+
+[.console-input]
+[source,bash]
+----
+man whoami
+----
+
+[.console-output]
+[source,bash]
+----
+WHOAMI(1)                          User Commands                         WHOAMI(1)
+
+NAME
+       whoami - print effective userid
+
+SYNOPSIS
+       whoami [OPTION]...
+
+DESCRIPTION
+       Print the user name associated with the current effective user ID.  Same as
+       id -un.
+
+       --help display this help and exit
+
+       --version
+              output version information and exit
+----
+
+[#whatis]
+== Using `whatis`
+
+Each manual page has a short description available within it.
+`whatis` searches the manual page names and displays the manual page descriptions of any name matched, without having to look over the entire `man` page.
+
+[.console-input]
+[source,bash]
+----
+whatis whoami
+----
+
+[.console-output]
+[source,bash]
+----
+whoami(1)                - print effective userid
+----
+
+[#reboot]
+== Using `reboot`
+
+The most straightforward way to restart your Linux server is with the `reboot` command. If you don't already have administrative privileges, you'll need them for this.
+
+[.console-input]
+[source,bash]
+----
+sudo reboot
+----

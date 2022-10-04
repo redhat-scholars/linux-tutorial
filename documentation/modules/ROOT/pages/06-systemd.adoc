@@ -1,0 +1,92 @@
+= Systemd
+include::_attributes.adoc[]
+
+You can control how services are started, halted, and otherwise managed with `systemd` system and service manager.
+Let's learn how to control various processes using `systemd`.
+
+[#listing-systemd]
+== List the systemd system
+
+Using `systemctl`, we can introspect and control the state of the systemd system and service manager.
+
+[.console-input]
+[source,bash]
+----
+systemctl
+----
+
+[.console-output]
+[source,bash]
+----
+UNIT                               LOAD   ACTIVE SUB       DESCRIPTION              
+proc-sys-fs-binfmt_misc.automount  loaded active waiting   Arbitrary Executable File>
+sys-devices-platform-serial8250-tty-ttyS1.device loaded active plugged   /sys/device>
+sys-devices-platform-serial8250-tty-ttyS2.device loaded active plugged   /sys/device
+----
+
+[#status-systemd]
+== Check service status
+
+Using `systemctl status`, we can see if a service is running or enabled.
+
+[.console-input]
+[source,bash]
+----
+systemctl status sshd
+----
+
+[.console-output]
+[source,bash]
+----
+● sshd.service - OpenSSH server daemon
+   Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset: ena>
+   Active: active (running) since Wed 2022-09-14 14:08:19 UTC; 1 weeks 2 days ago
+----
+
+[#service-systemd]
+== Start/stop a service
+
+Using `systemctl start` or `systemctl stop`, we can start/stop a service.
+
+[.console-input]
+[source,bash]
+----
+systemctl stop sshd
+----
+
+[.console-input]
+[source,bash]
+----
+systemctl start sshd
+----
+
+[#enable-systemd]
+== Enable/disable a service
+
+Using `systemctl enable` or `systemctl disable`, we can affect the service's defaults at boot. For example, if we disable the service, it won't start the next time the system boots.
+
+[.console-input]
+[source,bash]
+----
+sudo systemctl disable sshd
+----
+
+[.console-output]
+[source,bash]
+----
+Removed /etc/systemd/system/multi-user.target.wants/sshd.service.
+----
+
+However, if we need the service to start automatically at boot, we can enable it.
+
+[.console-input]
+[source,bash]
+----
+sudo systemctl enable sshd
+----
+
+[.console-output]
+[source,bash]
+----
+Created symlink /etc/systemd/system/multi-user.target.wants/sshd.service → /usr/lib/systemd/system/sshd.service.
+----

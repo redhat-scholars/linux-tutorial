@@ -1,1 +1,3 @@
-Check the build courseware https://redhat-scholars.github.io/build-course[documentation]  on how folder structure, how to use macros and other gotchas
+# Linux Tutorial Workshop
+
+This is the repository for the Linux Tutorial available at https://redhat-scholars.github.io/linux-tutorial/[Linux Tutorial Guide].

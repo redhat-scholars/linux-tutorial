@@ -1,0 +1,61 @@
+= Permissions & ownership
+include::_attributes.adoc[]
+
+Within Linux, `chmod` allows you to manage the access permission of files and directories. 
+In addition, it can assign groups and users permission for executing, reading, and writing permission on files and directories.
+
+[#permission-basics]
+== Permission basics
+
+Let's return to our home directory with `cd ~`, and take a look at the various files and permissions we have already with `ls`.
+
+[.console-input]
+[source,bash]
+----
+ls -l
+----
+
+[.console-output]
+[source,bash]
+----
+total 16416
+drwxrwxr-x.  2 ec2-user ec2-user        6 Sep 23 18:11 Downloads
+-rw-rw-r--.  1 ec2-user ec2-user        0 Sep 23 18:03 file1.txt
+-rw-rw-r--.  1 ec2-user ec2-user        0 Sep 23 18:03 file2.txt
+-rw-rw-r--.  1 ec2-user ec2-user 16804115 Oct  3 19:25 v9.0.0652.tar.gz
+drwxrwxr-x. 10 ec2-user ec2-user     4096 Oct  3 19:01 vim-9.0.0652
+----
+
+Here, we can begin to understand some of the various permissions each file has based on the first 10 characters on the listing for each item:
+
+* The first `-` or `d` represents a file or a folder, respectively
+* The first set of 3 refers to the owner's permissions; `rwx` standing for read, write, and execute permissions
+* The next set of 3 refers to user groups permissions
+* The final set of 3 refers to other's permissions
+
+[#permission-changing]
+== Changing permissions
+
+We can use `chmod` to change the permissions of files, for example giving other users the ability to execute, read, and write. 
+`chmod 755` is a heavily used command because of it's ability to do so.
+
+[.console-input]
+[source,bash]
+----
+chmod 755 file1.txt
+ls -l
+----
+
+[.console-output]
+[source,bash]
+----
+total 16416
+drwxrwxr-x.  2 ec2-user ec2-user        6 Sep 23 18:11 Downloads
+-rwxr-xr-x.  1 ec2-user user1           0 Sep 23 18:03 file1.txt
+-rw-rw-r--.  1 ec2-user ec2-user        0 Sep 23 18:03 file2.txt
+-rw-rw-r--.  1 ec2-user ec2-user 16804115 Oct  3 19:25 v9.0.0652.tar.gz
+drwxrwxr-x. 10 ec2-user ec2-user     4096 Oct  3 19:01 vim-9.0.0652
+----
+
+Now, if we were to create a new user, they would have permission to read and execute the file.
+This is generally used for scripts and related files where other users need permission.
