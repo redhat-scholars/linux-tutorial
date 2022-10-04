@@ -7,7 +7,7 @@ In addition, let's cover some other ways to gather RHEL OS stats.
 [#using-iotop]
 == Using iotop
 
-Installing `iotop` is similar to and other tool, where we can use `dnf`.
+Installing `iotop` is similar to any other tool, where we can use `dnf`.
 
 [.console-input]
 [source,bash]

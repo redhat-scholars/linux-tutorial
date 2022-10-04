@@ -13,7 +13,7 @@ First, let's go to the https://github.com/vim/vim/tags[release page] for Vim, an
 
 image::software/github.png[Github release page, 800]
 
-Right click and copy the link address for this specific release so we can then download it in our RHEL machine.
+Right-click and copy the link address for this specific release so we can then download it in our RHEL machine.
 Next, let's use `curl` to download this specific `tar.gz` link to our local machine.
 
 [.console-input]

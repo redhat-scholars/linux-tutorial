@@ -1,7 +1,7 @@
 = Basic commands
 include::_attributes.adoc[]
 
-While there are plenty of commands avaliable in Linux, there are a certain few that are cruital to your Linux experience.
+While there are plenty of commands available in Linux, there are a certain few that are crucial to your Linux experience.
 Most likely, you'll end up using these commands daily.
 
 [#whoami]
@@ -89,7 +89,7 @@ whoami(1)                - print effective userid
 [#reboot]
 == Using `reboot`
 
-The most straightforward way to restart your Linux server is with the `reboot` command. If you don't already have administrative privledges, you'll need them for this.
+The most straightforward way to restart your Linux server is with the `reboot` command. If you don't already have administrative privileges, you'll need them for this.
 
 [.console-input]
 [source,bash]

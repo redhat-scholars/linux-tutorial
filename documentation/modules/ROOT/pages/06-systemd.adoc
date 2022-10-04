@@ -1,7 +1,7 @@
 = Systemd
 include::_attributes.adoc[]
 
-You can control over how services are started, halted, and otherwise managed with `systemd` system and service manager.
+You can control how services are started, halted, and otherwise managed with `systemd` system and service manager.
 Let's learn how to control various processes using `systemd`.
 
 [#listing-systemd]

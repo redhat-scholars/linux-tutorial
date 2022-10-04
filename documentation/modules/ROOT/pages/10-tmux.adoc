@@ -51,7 +51,7 @@ Now, we can begin to utilize the pane management capabilities of `tmux` but usin
 * Horizontal split: `Ctrl-b "`
 * Vertical split: `Ctrl-b %`
 
-You'll need to first do `Ctrl-b`, letting `tmux` know you're about to give it a command, then the key for vertical/horizontal afterwards. For example if you do a horizontal split and a vertical split, your terminal window should look like so.
+You'll need to first do `Ctrl-b`, letting `tmux` know you're about to give it a command, then the key for vertical/horizontal afterwards. For example, if you do a horizontal split and a vertical split, your terminal window should look like so.
 
 image::tmux-split.png[tmux split dashboard, 800]
 

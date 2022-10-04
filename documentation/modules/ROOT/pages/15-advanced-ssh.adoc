@@ -77,5 +77,5 @@ scp -i ~/.ssh/id_rsa.pub filename username@remote_host_ip:/home/username/filenam
 [#ssh-config]
 == SSH configuration
 
-SSH clients can be configuring using a global or local configuration file to save time and typing frequently used ssh client command-line options such as port, user, hostname, and more.
+SSH clients can be configured using a global or local configuration file to save time and typing frequently used ssh client command-line options such as port, user, hostname, and more.
 This is found in the `.ssh/config` file on a system, and more information can be found https://linux.die.net/man/5/ssh_config[here].
