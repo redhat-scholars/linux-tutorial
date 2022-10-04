@@ -18,13 +18,14 @@
 * xref:09-permissions.adoc[Permission & ownerships]
 
 - 3. Intermediate
-* xref:03-intermediate.adoc#linux[Terminal multiplexer: tmux]
-* xref:03-intermediate.adoc#linux[Code editor: nano]
-* xref:03-intermediate.adoc#linux[Finding & killing processes]
-* xref:03-intermediate.adoc#linux[Gathering OS stats]
-* xref:03-intermediate.adoc#linux[Looking at open ports]
-* xref:03-intermediate.adoc#linux[Advanced SSH]
-* xref:03-intermediate.adoc#linux[Security: SELinux]
+- 3. Intermediate
+* xref:10-tmux.adoc[Terminal multiplexer: tmux]
+* xref:11-nano.adoc[Code editor: nano]
+* xref:12-processes.adoc[Finding & killing processes]
+* xref:13-os-stats.adoc[Gathering OS stats]
+* xref:14-open-ports.adoc[Looking at open ports]
+* xref:15-advanced-ssh.adoc[Advanced SSH]
+* xref:16-selinux-security.adoc[Security: SELinux]
 
 - 4. Free Resources
 * xref:resources/cheat-sheets.adoc[Cheat sheets]
