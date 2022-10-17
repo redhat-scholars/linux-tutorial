@@ -6,7 +6,7 @@ https://www.nano-editor.org/[Nano] is an easy to use command line text editor fo
 [#installing-nano]
 == Installing nano
 
-To get started with the `nano`editor, we simply need to install `nano` using `dnf`.
+To get started with the `nano` editor, we simply need to install `nano` using `dnf`.
 
 [.console-input]
 [source,bash]
