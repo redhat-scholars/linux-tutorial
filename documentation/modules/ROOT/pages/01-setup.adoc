@@ -8,7 +8,7 @@ TIP: If you're using a M1 based Mac machine, please use https://www.youtube.com/
 
 [#downloadingrhel]
 == Downloading RHEL
-The first step to working with Red Hat Enterprise Linux is downloading the Universal Base Image from the https://developers.redhat.com/products/rhel/download[Red Hat Developer program].
+The first step to working with Red Hat Enterprise Linux is downloading via the https://developers.redhat.com/products/rhel/download[Red Hat Developer program].
 On the Red Hat Developer page, scroll down to see the list of available RHEL image downloads, and download the **x86_64 Boot iso**.
 
 image::setup/download-rhel.png[Download RHEL Button, 800]
