@@ -14,7 +14,7 @@
 * xref:05-installing-software.adoc[Installing software]
 * xref:06-systemd.adoc[Systemd]
 * xref:07-cockpit.adoc[RHEL User Interface: Cockpit]
-* xref:08-unpacked-software.adoc[Installing unpackaged software]
+* xref:08-unpackaged-software.adoc[Installing unpackaged software]
 * xref:09-permissions.adoc[Permission & ownerships]
 
 - 3. Intermediate
