@@ -96,3 +96,19 @@ The most straightforward way to restart your Linux server is with the `reboot` c
 ----
 sudo reboot
 ----
+[#which]
+== Using which
+
+The 'which' command is used to locate the executable file associated with a given command. It prints the full path of the executable command file that is executed when a user runs a particular command.
+
+[.console-input]
+[source,bash]
+
+which ls
+
+[.console-output]
+[source,bash]
+
+/bin/ls
+
+In the above example, the output '/bin/ls' shows that the 'ls' command is located in the '/bin' directory.
