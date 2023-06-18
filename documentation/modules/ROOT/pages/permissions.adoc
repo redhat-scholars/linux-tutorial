@@ -59,3 +59,23 @@ drwxrwxr-x. 10 ec2-user ec2-user     4096 Oct  3 19:01 vim-9.0.0652
 
 Now, if we were to create a new user, they would have permission to read and execute the file.
 This is generally used for scripts and related files where other users need permission.
+
+We can also change the owner of a file with `chown`. For example, if we wanted to change the owner of `file1.txt` to `user1`, we would run:
+
+[.console-input]
+[source,bash]
+----
+chown user1 file1.txt
+ls -l
+----
+
+[.console-output]
+[source,bash]
+----
+total 16416
+drwxrwxr-x.  2 ec2-user ec2-user        6 Sep 23 18:11 Downloads
+-rwxr-xr-x.  1 user1    user1           0 Sep 23 18:03 file1.txt
+-rw-rw-r--.  1 ec2-user ec2-user        0 Sep 23 18:03 file2.txt
+-rw-rw-r--.  1 ec2-user ec2-user 16804115 Oct  3 19:25 v9.0.0652.tar.gz
+drwxrwxr-x. 10 ec2-user ec2-user     4096 Oct  3 19:01 vim-9.0.0652
+----
