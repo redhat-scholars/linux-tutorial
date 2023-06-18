@@ -1,7 +1,7 @@
 = Accessing Linux
 include::_attributes.adoc[]
 
-The easiest way to use Linux and learn all of the fundamentals throughout this lab is through the https://www.redhat.com/en/interactive-labs/enterprise-linux[Red Hat Enterprise Linux interactive labs page]. This will allow you to use a fully functional Red Hat Enterprise Linux environment within your browser. Here, you can try out various guided labs to help you learn system administration and development on Linux, as well as skills and technologies to help you further your career. If you're looking to install a Linux virtual machine on your computer, head to the next page to learn how to do so. 
+The easiest way to use Linux and learn all of the fundamentals throughout this lab is through the https://www.redhat.com/en/interactive-labs/enterprise-linux[Red Hat Enterprise Linux interactive labs page]. This will allow you to use a fully functional Red Hat Enterprise Linux environment within your browser, with each lab lasting around an hour. Here, you can try out various guided labs to help you learn system administration and development on Linux, as well as skills and technologies to help you further your career. If you're looking to install a Linux virtual machine on your computer, head to the next page to learn how to do so. 
 
 [#open-lab]
 == Open Lab

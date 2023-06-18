@@ -1,8 +1,7 @@
 = Setup VM
 include::_attributes.adoc[]
 
-In order to work begin using Red Hat Enterprise Linux in this lab, you may need to run a RHEL virtual machine on your computer.
-This section will teach you how to download the operating system, install it on VirtualBox, and configure your RHEL machine once started.
+In order to work begin using Red Hat Enterprise Linux in this lab, you may also want to run a RHEL virtual machine on your computer to keep your work and progress. This section will teach you how to download the operating system, install it on VirtualBox, and configure your RHEL machine once started.
 
 TIP: If you're using a M1 based Mac machine, please use https://www.youtube.com/watch?v=NFuwmZYhvv8[this] tutorial for installing RHEL.
 
