@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 For Red Hat Enterprise Linux machines, the `subscription-manager` solution allows users of RHEL to register their software, as well as download Red Hat tested and certified software, updates, and upgrades for RHEL.
 In this section, you'll learn how to register and enable your Red Hat subscription to install any package on your system.
 
-TIP: During the install process you already registered your RHEL system, but you may still want to learn how to do so from the CLI.
+TIP: During the install process you already registered your RHEL system or are using a pre-registered lab, but you may still want to learn how to do so from the CLI.
 
 [#registering]
 == Register and Activate a Red Hat Subscription
