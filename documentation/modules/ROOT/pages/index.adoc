@@ -12,41 +12,42 @@ This tutorial will provide you with an introduction to Linux skills, using https
 [.text-center.strong]
 == What is Red Hat Enterprise Linux?
 
-Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now optimized for development. Learn more https://developers.redhat.com/products/rhel/overview[here]!
+Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now optimized for development. It supports every major programming language and latest version of each language. Additionally, RHEL includes a complete set of tools for developing for microservices, containers, and cloud-native applications. Learn more https://developers.redhat.com/products/rhel/overview[here]!
 
 [.tiles.browse]
 == Tutorial Steps
 
 [.tile]
 - 1. Getting Started
-* xref:00-introduction.adoc[Linux]
-* xref:01-setup.adoc[Installation]
-** xref:01-setup.adoc#downloadingrhel[Downloading RHEL]
-** xref:01-setup.adoc#virtualbox[Setting up VirtualBox]
-** xref:01-setup.adoc#gettingstarted[Getting started with RHEL]
-** xref:01-setup.adoc#rhel-cli[RHEL CLI]
+* xref:introduction.adoc[Linux]
+* xref:setup-lab.adoc[Accessing Linux]
+* xref:setup-vm.adoc[Linux Installation]
+** xref:setup-vm.adoc#downloadingrhel[Downloading RHEL]
+** xref:setup-vm.adoc#virtualbox[Setting up VirtualBox]
+** xref:setup-vm.adoc#gettingstarted[Getting started with RHEL]
+** xref:setup-vm.adoc#rhel-cli[RHEL CLI]
 
 
 [.tile]
 - 2. Basics
-* xref:02-registering.adoc[Registering a RHEL system]
-* xref:03-basic-commands.adoc[Basic commands]
-* xref:04-file-operations.adoc[File operations]
-* xref:05-installing-software.adoc[Installing software]
-* xref:06-systemd.adoc[Systemd]
-* xref:07-cockpit.adoc[RHEL User Interface: Cockpit]
-* xref:08-unpackaged-software.adoc[Installing unpackaged software]
-* xref:09-permissions.adoc[Permission & ownerships]
+* xref:registering.adoc[Registering a RHEL system]
+* xref:basic-commands.adoc[Basic commands]
+* xref:file-operations.adoc[File operations]
+* xref:installing-software.adoc[Installing software]
+* xref:systemd.adoc[Systemd]
+* xref:cockpit.adoc[RHEL User Interface: Cockpit]
+* xref:unpackaged-software.adoc[Installing unpackaged software]
+* xref:permissions.adoc[Permission & ownerships]
 
 [.tile]
 - 3. Intermediate
-* xref:10-tmux.adoc[Terminal multiplexer: tmux]
-* xref:11-nano.adoc[Code editor: nano]
-* xref:12-processes.adoc[Finding & killing processes]
-* xref:13-os-stats.adoc[Gathering OS stats]
-* xref:14-open-ports.adoc[Looking at open ports]
-* xref:15-advanced-ssh.adoc[Advanced SSH]
-* xref:16-selinux-security.adoc[Security: SELinux]
+* xref:tmux.adoc[Terminal multiplexer: tmux]
+* xref:nano.adoc[Code editor: nano]
+* xref:processes.adoc[Finding & killing processes]
+* xref:os-stats.adoc[Gathering OS stats]
+* xref:open-ports.adoc[Looking at open ports]
+* xref:advanced-ssh.adoc[Advanced SSH]
+* xref:selinux-security.adoc[Security: SELinux]
 
 [.tile]
 - 4. Free Resources

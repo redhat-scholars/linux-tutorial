@@ -1,0 +1,26 @@
+= Accessing Linux
+include::_attributes.adoc[]
+
+The easiest way to use Linux and learn all of the fundamentals throughout this lab is through the https://www.redhat.com/en/interactive-labs/enterprise-linux[Red Hat Enterprise Linux interactive labs page]. This will allow you to use a fully functional Red Hat Enterprise Linux environment within your browser. Here, you can try out various guided labs to help you learn system administration and development on Linux, as well as skills and technologies to help you further your career. If you're looking to install a Linux virtual machine on your computer, head to the next page to learn how to do so. 
+
+[#open-lab]
+== Open Lab
+
+For just general experimenting within a Linux environment, you can use the https://www.redhat.com/en/interactive-labs/red-hat-enterprise-linux-open-lab[Red Hat Enterprise Linux open lab]. You'll be able to follow along with this tutorial's instructions and learn how to use Linux.
+
+[#podman-lab]
+== Podman Lab
+
+Looking to learn more about containers? Try out the https://www.redhat.com/en/interactive-labs/deploy-containers-podman-container-tools[Deploy containers using Podman container tools lab] to learn how to deploy and run container images.
+
+[#more-labs]
+== More Labs
+
+If you're looking for more labs to try out, head to the https://www.redhat.com/en/interactive-labs/enterprise-linux[Interactive labs for Red Hat Enterprise Linux page] to see all of the available labs. These hands-on learning scenarios provide you with a preconfigured Red Hat Enterprise Linux environment to experiment, practice, and see how Red Hat can power and support your software and technologies.
+
+image::setup/more-labs.png[More RHEL Labs, 800]
+
+[#next-steps]
+== Next Steps
+
+Now that you've learned how to access Linux, you can skip the linux installation section and head straight to the Linux basics.

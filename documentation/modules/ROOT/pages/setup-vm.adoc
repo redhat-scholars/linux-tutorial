@@ -1,4 +1,4 @@
-= Setup
+= Setup VM
 include::_attributes.adoc[]
 
 In order to work begin using Red Hat Enterprise Linux in this lab, you may need to run a RHEL virtual machine on your computer.
