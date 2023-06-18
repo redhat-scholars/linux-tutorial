@@ -87,3 +87,32 @@ ls
 ----
 Downloads  file1.txt  file2.txt
 ----
+
+[#cat]
+== Using `cat`
+
+The `cat` command is used to display the contents of a file. Before using this command, let's add some text to the file we created earlier using `echo` and use `>` to redirect the output to the file.
+
+[.console-input]
+[source,bash]
+----
+echo "This is some text" > file1.txt
+cat file1.txt
+----
+
+[.console-output]
+[source,bash]
+----
+This is some text
+----
+
+[#rm]
+== Using `rm`
+
+The `rm` command is used to remove files and directories. Let's remove the file we created earlier.
+
+[.console-input]
+[source,bash]
+----
+rm file1.txt
+----
