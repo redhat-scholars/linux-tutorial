@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Linux Deep Dive :: Linux Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/index.html">
-    <link rel="next" href="introduction.html">
+    <title>Code editor: nano :: Linux Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/nano.html">
+    <link rel="prev" href="tmux.html">
+    <link rel="next" href="processes.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -117,7 +118,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="tmux.html">Terminal multiplexer: tmux</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="nano.html">Code editor: nano</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -169,179 +170,161 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Linux Tutorial</a></li>
-    <li><a href="index.html">Linux Deep Dive</a></li>
+    <li>3. Intermediate</li>
+    <li><a href="nano.html">Code editor: nano</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/nano.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Linux Deep Dive</h1>
+<h1 class="page">Code editor: nano</h1>
 <div id="preamble">
 <div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://www.nano-editor.org/">Nano</a> is an easy to use command line text editor for Unix and Linux operating systems. Let&#8217;s show the power of <code>nano</code> by working with a <a href="https://quarkus.io/">Quarkus</a> example application and doing some live coding!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-nano"><a class="anchor" href="#installing-nano"></a>Installing nano</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To get started with the <code>nano</code> editor, we simply need to install <code>nano</code> using <code>dnf</code>.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dnf install -y nano</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Updating Subscription Management repositories.
+Last metadata expiration check: 2:15:10 ago on Tue 04 Oct 2022 01:21:12 AM UTC.
+Dependencies resolved.
+========================================================================================================
+ Package          Architecture       Version                  Repository                           Size
+========================================================================================================
+Installing:
+ nano             x86_64             2.9.8-1.el8              rhel-8-baseos-rhui-rpms             580 k
+...
+Complete!</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-quarkus"><a class="anchor" href="#installing-quarkus"></a>Installing quarkus</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Next, let&#8217;s also install Quarkus, and any other dependencies so we can create a template "Getting Started" application.
+Based off of the <a href="https://quarkus.io/get-started/">Get Started</a> instructions, we can use the following command to install the Quarkus CLI.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -Ls https://sh.jbang.dev | bash -s - trust add https://repo1.maven.org/maven2/io/quarkus/quarkus-cli/
+curl -Ls https://sh.jbang.dev | bash -s - app install --fresh --force quarkus@quarkusio</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Downloading JBang...
+Installing JBang...
+Downloading JDK 11. Be patient, this can take several minutes...
+...
+[jbang] Setting up JBang environment...
+Please start a new Shell for changes to take effect</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="starting-with-nano"><a class="anchor" href="#starting-with-nano"></a>Getting started with nano</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, let&#8217;s return to <code>tmux</code> to have a few windows to work with. Then, let&#8217;s create the example application so we have code to edit with <code>nano</code>.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tmux
+quarkus create &amp;&amp; cd code-with-quarkus</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Creating an app (default project type, see --help).
+Looking for the newly published extensions in registry.quarkus.io
+...
+[SUCCESS] ✅  quarkus project has been successfully generated in:
+--&gt; /home/ec2-user/code-with-quarkus</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, let&#8217;s run the application using <code>quarkus dev</code>, and open a new pane using <code>tmux</code> in order to check that the application is running.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">quarkus dev
+Ctrl-b %
+curl -s localhost:8080/hello</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Creating an app (default project type, see --help).
+Looking for the newly published extensions in registry.quarkus.io
+...
+[SUCCESS] ✅  quarkus project has been successfully generated in:
+--&gt; /home/ec2-user/code-with-quarkus</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And a result from the <code>curl</code> command as follows.</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Hello from RESTEasy Reactive</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s use <code>nano</code> to change our code on the fly, and modify the RESTful endpoint. Creating one more pane, let&#8217;s open up the <code>GreetingResource.java</code> file using <code>nano</code> and change "Hello from RESTEasy Reactive" to "hello".</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Ctrl-b "
+nano code-with-quarkus/src/main/java/org/acme/GreetingResource.java</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, the Quarkus application will automatically refresh, and upon a new <code>curl</code> command, you&#8217;ll notice the result has updated.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -s localhost:8080/hello</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">hello</code></pre>
+</div>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/rhel-logo.png" alt="RHEL Logo" width="600">
+<img src="_images/nano.png" alt="Nano dashboard" width="800">
 </div>
 </div>
-</div>
-</div>
-<div class="sect1 text-center strong">
-<h2>Welcome to your Linux Journey!</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>This tutorial will provide you with an introduction to Linux skills, using <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux</a> (RHEL).</p>
-</div>
-</div>
-</div>
-<div class="sect1 text-center strong">
-<h2>What is Red Hat Enterprise Linux?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now optimized for development. It supports every major programming language and latest version of each language. Additionally, RHEL includes a complete set of tools for developing for microservices, containers, and cloud-native applications. Learn more <a href="https://developers.redhat.com/products/rhel/overview">here</a>!</p>
-</div>
-</div>
-</div>
-<div class="sect1 tiles browse">
-<h2>Tutorial Steps</h2>
-<div class="sectionbody">
-<div class="ulist tile">
-<ul>
-<li>
-<p>1. Getting Started</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="introduction.html" class="xref page">Linux</a></p>
-</li>
-<li>
-<p><a href="setup-lab.html" class="xref page">Accessing Linux</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html" class="xref page">Linux Installation</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="setup-vm.html#downloadingrhel" class="xref page">Downloading RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#virtualbox" class="xref page">Setting up VirtualBox</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#gettingstarted" class="xref page">Getting started with RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#rhel-cli" class="xref page">RHEL CLI</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>2. Basics</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="registering.html" class="xref page">Registering a RHEL system</a></p>
-</li>
-<li>
-<p><a href="basic-commands.html" class="xref page">Basic commands</a></p>
-</li>
-<li>
-<p><a href="file-operations.html" class="xref page">File operations</a></p>
-</li>
-<li>
-<p><a href="installing-software.html" class="xref page">Installing software</a></p>
-</li>
-<li>
-<p><a href="systemd.html" class="xref page">Systemd</a></p>
-</li>
-<li>
-<p><a href="cockpit.html" class="xref page">RHEL User Interface: Cockpit</a></p>
-</li>
-<li>
-<p><a href="unpackaged-software.html" class="xref page">Installing unpackaged software</a></p>
-</li>
-<li>
-<p><a href="permissions.html" class="xref page">Permission &amp; ownerships</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>3. Intermediate</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="tmux.html" class="xref page">Terminal multiplexer: tmux</a></p>
-</li>
-<li>
-<p><a href="nano.html" class="xref page">Code editor: nano</a></p>
-</li>
-<li>
-<p><a href="processes.html" class="xref page">Finding &amp; killing processes</a></p>
-</li>
-<li>
-<p><a href="os-stats.html" class="xref page">Gathering OS stats</a></p>
-</li>
-<li>
-<p><a href="open-ports.html" class="xref page">Looking at open ports</a></p>
-</li>
-<li>
-<p><a href="advanced-ssh.html" class="xref page">Advanced SSH</a></p>
-</li>
-<li>
-<p><a href="selinux-security.html" class="xref page">Security: SELinux</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>4. Free Resources</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="resources/cheat-sheets.html" class="xref page">Cheat sheets</a></p>
-</li>
-<li>
-<p><a href="resources/training.html" class="xref page">Red Hat training</a></p>
-</li>
-<li>
-<p><a href="resources/books.html" class="xref page">Books</a></p>
-</li>
-<li>
-<p><a href="resources/labs.html" class="xref page">Labs</a></p>
-</li>
-<li>
-<p><a href="resources/devnation.html" class="xref page">DevNation</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>There are plenty of more shortcuts you can use with <code>nano</code> to really utilize the full power of the editor, and you can learn more using this official <a href="https://www.nano-editor.org/dist/latest/cheatsheet.html">shortcuts guide</a>.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="introduction.html">Linux</a></span>
+  <span class="prev"><a href="tmux.html">Terminal multiplexer: tmux</a></span>
+  <span class="next"><a href="processes.html">Finding &amp; killing processes</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

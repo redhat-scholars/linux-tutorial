@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Linux Deep Dive :: Linux Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/index.html">
-    <link rel="next" href="introduction.html">
+    <title>Installing software :: Linux Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/installing-software.html">
+    <link rel="prev" href="file-operations.html">
+    <link rel="next" href="systemd.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -93,7 +94,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="file-operations.html">File operations</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="installing-software.html">Installing software</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -169,179 +170,141 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Linux Tutorial</a></li>
-    <li><a href="index.html">Linux Deep Dive</a></li>
+    <li>2. Basics</li>
+    <li><a href="installing-software.html">Installing software</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/installing-software.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Linux Deep Dive</h1>
+<h1 class="page">Installing software</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="imageblock">
+<div class="paragraph">
+<p>The main way to install software on Linux is through a software repository.
+RHEL uses <code>dnf</code>, a software package manager that installs, updates, and removes packages.
+Let&#8217;s take a look at some basic commands using <code>dnf</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="listing"><a class="anchor" href="#listing"></a>Listing repositories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using <code>dnf repolist</code>, we can list all repositories and available information.</p>
+</div>
+<div class="listingblock console-input">
 <div class="content">
-<img src="_images/rhel-logo.png" alt="RHEL Logo" width="600">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dnf repolist</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Updating Subscription Management repositories.
+repo id                        repo name
+ansible-2-for-rhel-8-rhui-rpms Red Hat Ansible Engine 2 for RHEL 8 (RPMs) from RHUI
+rhel-8-appstream-rhui-rpms     Red Hat Enterprise Linux 8 for x86_64 - AppStream from RHUI (RPMs)
+rhel-8-baseos-rhui-rpms        Red Hat Enterprise Linux 8 for x86_64 - BaseOS from RHUI (RPMs)
+rhui-client-config-server-8    RHUI Client Configuration Server 8</code></pre>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1 text-center strong">
-<h2>Welcome to your Linux Journey!</h2>
+<div class="sect1">
+<h2 id="searching"><a class="anchor" href="#searching"></a>Searching for a package</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This tutorial will provide you with an introduction to Linux skills, using <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux</a> (RHEL).</p>
+<p>Using <code>dnf search</code>, we can search our repositories for a package type.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dnf search npm</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Updating Subscription Management repositories.
+Last metadata expiration check: 2:04:09 ago on Fri 23 Sep 2022 04:47:47 PM UTC.
+============================= Name Exactly Matched: npm =============================
+npm.x86_64 : Node.js Package Manager</code></pre>
 </div>
 </div>
 </div>
-<div class="sect1 text-center strong">
-<h2>What is Red Hat Enterprise Linux?</h2>
+</div>
+<div class="sect1">
+<h2 id="installing"><a class="anchor" href="#installing"></a>Installing a package</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now optimized for development. It supports every major programming language and latest version of each language. Additionally, RHEL includes a complete set of tools for developing for microservices, containers, and cloud-native applications. Learn more <a href="https://developers.redhat.com/products/rhel/overview">here</a>!</p>
+<p>Using <code>dnf install</code>, we make sure that a given package and their dependencies are installed on the system.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dnf install npm</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Updating Subscription Management repositories.
+Last metadata expiration check: 2:06:02 ago on Fri 23 Sep 2022 04:47:47 PM UTC.
+Dependencies resolved.
+=====================================================================================
+ Package          Arch   Version                    Repository                  Size
+=====================================================================================
+Installing:
+ npm              x86_64 1:6.14.11-1.10.24.0.1.module+el8.3.0+10166+b07ac28e
+                                                    rhel-8-appstream-rhui-rpms 3.7 M
+...
+Installed:
+  nodejs-1:10.24.0-1.module+el8.3.0+10166+b07ac28e.x86_64
+  nodejs-full-i18n-1:10.24.0-1.module+el8.3.0+10166+b07ac28e.x86_64
+  npm-1:6.14.11-1.10.24.0.1.module+el8.3.0+10166+b07ac28e.x86_64
+
+Complete!</code></pre>
 </div>
 </div>
 </div>
-<div class="sect1 tiles browse">
-<h2>Tutorial Steps</h2>
+</div>
+<div class="sect1">
+<h2 id="removing"><a class="anchor" href="#removing"></a>Removing a package</h2>
 <div class="sectionbody">
-<div class="ulist tile">
-<ul>
-<li>
-<p>1. Getting Started</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="introduction.html" class="xref page">Linux</a></p>
-</li>
-<li>
-<p><a href="setup-lab.html" class="xref page">Accessing Linux</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html" class="xref page">Linux Installation</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="setup-vm.html#downloadingrhel" class="xref page">Downloading RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#virtualbox" class="xref page">Setting up VirtualBox</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#gettingstarted" class="xref page">Getting started with RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#rhel-cli" class="xref page">RHEL CLI</a></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Using <code>dnf remove</code>, we can remove the specified package from the system.</p>
 </div>
-</li>
-</ul>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dnf remove npm</code></pre>
 </div>
-</li>
-</ul>
 </div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>2. Basics</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="registering.html" class="xref page">Registering a RHEL system</a></p>
-</li>
-<li>
-<p><a href="basic-commands.html" class="xref page">Basic commands</a></p>
-</li>
-<li>
-<p><a href="file-operations.html" class="xref page">File operations</a></p>
-</li>
-<li>
-<p><a href="installing-software.html" class="xref page">Installing software</a></p>
-</li>
-<li>
-<p><a href="systemd.html" class="xref page">Systemd</a></p>
-</li>
-<li>
-<p><a href="cockpit.html" class="xref page">RHEL User Interface: Cockpit</a></p>
-</li>
-<li>
-<p><a href="unpackaged-software.html" class="xref page">Installing unpackaged software</a></p>
-</li>
-<li>
-<p><a href="permissions.html" class="xref page">Permission &amp; ownerships</a></p>
-</li>
-</ul>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Updating Subscription Management repositories.
+Dependencies resolved.
+=====================================================================================
+ Package          Arch   Version                   Repository                   Size
+=====================================================================================
+Removing:
+ npm              x86_64 1:6.14.11-1.10.24.0.1.module+el8.3.0+10166+b07ac28e
+                                                   @rhel-8-appstream-rhui-rpms  15 M
+
+...
+Removed:
+  nodejs-1:10.24.0-1.module+el8.3.0+10166+b07ac28e.x86_64
+  nodejs-full-i18n-1:10.24.0-1.module+el8.3.0+10166+b07ac28e.x86_64
+  npm-1:6.14.11-1.10.24.0.1.module+el8.3.0+10166+b07ac28e.x86_64
+
+Complete!</code></pre>
 </div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>3. Intermediate</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="tmux.html" class="xref page">Terminal multiplexer: tmux</a></p>
-</li>
-<li>
-<p><a href="nano.html" class="xref page">Code editor: nano</a></p>
-</li>
-<li>
-<p><a href="processes.html" class="xref page">Finding &amp; killing processes</a></p>
-</li>
-<li>
-<p><a href="os-stats.html" class="xref page">Gathering OS stats</a></p>
-</li>
-<li>
-<p><a href="open-ports.html" class="xref page">Looking at open ports</a></p>
-</li>
-<li>
-<p><a href="advanced-ssh.html" class="xref page">Advanced SSH</a></p>
-</li>
-<li>
-<p><a href="selinux-security.html" class="xref page">Security: SELinux</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>4. Free Resources</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="resources/cheat-sheets.html" class="xref page">Cheat sheets</a></p>
-</li>
-<li>
-<p><a href="resources/training.html" class="xref page">Red Hat training</a></p>
-</li>
-<li>
-<p><a href="resources/books.html" class="xref page">Books</a></p>
-</li>
-<li>
-<p><a href="resources/labs.html" class="xref page">Labs</a></p>
-</li>
-<li>
-<p><a href="resources/devnation.html" class="xref page">DevNation</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="introduction.html">Linux</a></span>
+  <span class="prev"><a href="file-operations.html">File operations</a></span>
+  <span class="next"><a href="systemd.html">Systemd</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

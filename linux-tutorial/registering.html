@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Linux Deep Dive :: Linux Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/index.html">
-    <link rel="next" href="introduction.html">
+    <title>Registering a RHEL system :: Linux Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/registering.html">
+    <link rel="prev" href="setup-vm.html">
+    <link rel="next" href="basic-commands.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -84,7 +85,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">2. Basics</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="registering.html">Registering a RHEL system</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -169,179 +170,77 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Linux Tutorial</a></li>
-    <li><a href="index.html">Linux Deep Dive</a></li>
+    <li>2. Basics</li>
+    <li><a href="registering.html">Registering a RHEL system</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/registering.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Linux Deep Dive</h1>
+<h1 class="page">Registering a RHEL system</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="imageblock">
+<div class="paragraph">
+<p>For Red Hat Enterprise Linux machines, the <code>subscription-manager</code> solution allows users of RHEL to register their software, as well as download Red Hat tested and certified software, updates, and upgrades for RHEL.
+In this section, you&#8217;ll learn how to register and enable your Red Hat subscription to install any package on your system.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+During the install process you already registered your RHEL system, but you may still want to learn how to do so from the CLI.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="registering"><a class="anchor" href="#registering"></a>Register and Activate a Red Hat Subscription</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to register your RHEL machine to the Customer Portal, use the <code>subscription-manager</code> command with your credentials like so. The <code>--auto-attach</code> parameter enables the subscription at the same time.</p>
+</div>
+<div class="listingblock console-input">
 <div class="content">
-<img src="_images/rhel-logo.png" alt="RHEL Logo" width="600">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">subscription-manager register --username &lt;username&gt; --password &lt;password&gt; --auto-attach</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The RHEL system sould confirm your registration with an output similar like so.</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">The system has been registered with ID: &lt;id&gt;
+The registered system name is: localhost.localdomain</code></pre>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1 text-center strong">
-<h2>Welcome to your Linux Journey!</h2>
+<div class="sect1">
+<h2 id="registeringrhel"><a class="anchor" href="#registeringrhel"></a>Unregister a Red Hat Subscription</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This tutorial will provide you with an introduction to Linux skills, using <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux</a> (RHEL).</p>
+<p>If you need to unregister your RHEL machine to re-register with a different account or for any other reason, use the following command.</p>
 </div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">subscription-manager unregister</code></pre>
 </div>
-</div>
-<div class="sect1 text-center strong">
-<h2>What is Red Hat Enterprise Linux?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now optimized for development. It supports every major programming language and latest version of each language. Additionally, RHEL includes a complete set of tools for developing for microservices, containers, and cloud-native applications. Learn more <a href="https://developers.redhat.com/products/rhel/overview">here</a>!</p>
-</div>
-</div>
-</div>
-<div class="sect1 tiles browse">
-<h2>Tutorial Steps</h2>
-<div class="sectionbody">
-<div class="ulist tile">
-<ul>
-<li>
-<p>1. Getting Started</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="introduction.html" class="xref page">Linux</a></p>
-</li>
-<li>
-<p><a href="setup-lab.html" class="xref page">Accessing Linux</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html" class="xref page">Linux Installation</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="setup-vm.html#downloadingrhel" class="xref page">Downloading RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#virtualbox" class="xref page">Setting up VirtualBox</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#gettingstarted" class="xref page">Getting started with RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#rhel-cli" class="xref page">RHEL CLI</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>2. Basics</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="registering.html" class="xref page">Registering a RHEL system</a></p>
-</li>
-<li>
-<p><a href="basic-commands.html" class="xref page">Basic commands</a></p>
-</li>
-<li>
-<p><a href="file-operations.html" class="xref page">File operations</a></p>
-</li>
-<li>
-<p><a href="installing-software.html" class="xref page">Installing software</a></p>
-</li>
-<li>
-<p><a href="systemd.html" class="xref page">Systemd</a></p>
-</li>
-<li>
-<p><a href="cockpit.html" class="xref page">RHEL User Interface: Cockpit</a></p>
-</li>
-<li>
-<p><a href="unpackaged-software.html" class="xref page">Installing unpackaged software</a></p>
-</li>
-<li>
-<p><a href="permissions.html" class="xref page">Permission &amp; ownerships</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>3. Intermediate</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="tmux.html" class="xref page">Terminal multiplexer: tmux</a></p>
-</li>
-<li>
-<p><a href="nano.html" class="xref page">Code editor: nano</a></p>
-</li>
-<li>
-<p><a href="processes.html" class="xref page">Finding &amp; killing processes</a></p>
-</li>
-<li>
-<p><a href="os-stats.html" class="xref page">Gathering OS stats</a></p>
-</li>
-<li>
-<p><a href="open-ports.html" class="xref page">Looking at open ports</a></p>
-</li>
-<li>
-<p><a href="advanced-ssh.html" class="xref page">Advanced SSH</a></p>
-</li>
-<li>
-<p><a href="selinux-security.html" class="xref page">Security: SELinux</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>4. Free Resources</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="resources/cheat-sheets.html" class="xref page">Cheat sheets</a></p>
-</li>
-<li>
-<p><a href="resources/training.html" class="xref page">Red Hat training</a></p>
-</li>
-<li>
-<p><a href="resources/books.html" class="xref page">Books</a></p>
-</li>
-<li>
-<p><a href="resources/labs.html" class="xref page">Labs</a></p>
-</li>
-<li>
-<p><a href="resources/devnation.html" class="xref page">DevNation</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="introduction.html">Linux</a></span>
+  <span class="prev"><a href="setup-vm.html">Linux Installation</a></span>
+  <span class="next"><a href="basic-commands.html">Basic commands</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

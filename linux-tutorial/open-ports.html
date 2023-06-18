@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Linux Deep Dive :: Linux Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/index.html">
-    <link rel="next" href="introduction.html">
+    <title>Looking at open ports :: Linux Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/open-ports.html">
+    <link rel="prev" href="os-stats.html">
+    <link rel="next" href="advanced-ssh.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -126,7 +127,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="os-stats.html">Gathering OS stats</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="open-ports.html">Looking at open ports</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -169,179 +170,161 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Linux Tutorial</a></li>
-    <li><a href="index.html">Linux Deep Dive</a></li>
+    <li>3. Intermediate</li>
+    <li><a href="open-ports.html">Looking at open ports</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/open-ports.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Linux Deep Dive</h1>
+<h1 class="page">Looking at open ports</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="imageblock">
+<div class="paragraph">
+<p>Configuring and maintaining a firewall is a vital sysadmin skill, and Linux is no exception. Let&#8217;s learn how to find if a network port is open or not, and make modifications.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="using-ss"><a class="anchor" href="#using-ss"></a>Using ss</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To see if a program or process is listening on a port, ready to accept a packet, use the <code>ss</code> program.</p>
+</div>
+<div class="listingblock console-input">
 <div class="content">
-<img src="_images/rhel-logo.png" alt="RHEL Logo" width="600">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ss -nutlp</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Netid    State     Recv-Q     Send-Q         Local Address:Port         Peer Address:Port    Process
+udp      UNCONN    0          0                  127.0.0.1:323               0.0.0.0:*
+udp      UNCONN    0          0                      [::1]:323                  [::]:*
+tcp      LISTEN    0          128                  0.0.0.0:22                0.0.0.0:*
+tcp      LISTEN    0          128                     [::]:22                   [::]:*
+tcp      LISTEN    0          128                        *:9090                    *:*</code></pre>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1 text-center strong">
-<h2>Welcome to your Linux Journey!</h2>
+<div class="sect1">
+<h2 id="using-firewall-cmd"><a class="anchor" href="#using-firewall-cmd"></a>Using firewall-cmd</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This tutorial will provide you with an introduction to Linux skills, using <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux</a> (RHEL).</p>
+<p><code>firewall-cmd</code> is a front-end tool for managing the <code>firewalld</code> daemon, which interfaces with the Linux kernel&#8217;s netfilter framework. Let&#8217;s install it using <code>dnf</code>.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dnf install firewalld</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, we&#8217;ll need to start <code>firewalld</code> and enable it to auto-start at system boot.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl start firewalld &amp;&amp; systemctl enable firewalld</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, let&#8217;s see the machine&#8217;s ports, services, and firewall rule by using <code>firewall-cmd</code></p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">firewall-cmd --list-all</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: eth0
+  sources:
+  services: cockpit dhcpv6-client ssh
+  ports:
+  protocols:
+  forward: no
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to add a port to the firewall and make the change permanent, let&#8217;s use the following command to add port <code>8080</code>.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">firewall-cmd --permanent --add-port=8080/tcp &amp;&amp; firewall-cmd
+success</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">success</code></pre>
 </div>
 </div>
 </div>
-<div class="sect1 text-center strong">
-<h2>What is Red Hat Enterprise Linux?</h2>
+</div>
+<div class="sect1">
+<h2 id="using-nmap"><a class="anchor" href="#using-nmap"></a>Using nmap</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now optimized for development. It supports every major programming language and latest version of each language. Additionally, RHEL includes a complete set of tools for developing for microservices, containers, and cloud-native applications. Learn more <a href="https://developers.redhat.com/products/rhel/overview">here</a>!</p>
+<p><a href="https://nmap.org/">Nmap</a> (Network mapper) is an open-source Linux tool for network and security auditing. Let&#8217;s install it using <code>dnf</code>.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dnf install -y nmap</code></pre>
 </div>
 </div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Updating Subscription Management repositories.
+Last metadata expiration check: 3:39:16 ago on Tue 04 Oct 2022 01:21:12 AM UTC.
+Dependencies resolved.
+========================================================================================================
+ Package             Architecture     Version                Repository                            Size
+========================================================================================================
+Installing:
+ nmap                x86_64           2:7.70-6.el8           rhel-8-appstream-rhui-rpms           5.8 M
+...
+Complete!</code></pre>
 </div>
-<div class="sect1 tiles browse">
-<h2>Tutorial Steps</h2>
-<div class="sectionbody">
-<div class="ulist tile">
-<ul>
-<li>
-<p>1. Getting Started</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="introduction.html" class="xref page">Linux</a></p>
-</li>
-<li>
-<p><a href="setup-lab.html" class="xref page">Accessing Linux</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html" class="xref page">Linux Installation</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="setup-vm.html#downloadingrhel" class="xref page">Downloading RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#virtualbox" class="xref page">Setting up VirtualBox</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#gettingstarted" class="xref page">Getting started with RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#rhel-cli" class="xref page">RHEL CLI</a></p>
-</li>
-</ul>
 </div>
-</li>
-</ul>
+<div class="paragraph">
+<p>With <code>nmap</code>, we can do scans on IP addresses, using the following format: <code>nmap -sS -P0 &lt;IP&gt;</code>. For example, we can do a scan for Google&#8217;s IP address, <code>8.8.8.8</code>.</p>
 </div>
-</li>
-</ul>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo nmap -sS -P0 8.8.8.8</code></pre>
 </div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>2. Basics</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="registering.html" class="xref page">Registering a RHEL system</a></p>
-</li>
-<li>
-<p><a href="basic-commands.html" class="xref page">Basic commands</a></p>
-</li>
-<li>
-<p><a href="file-operations.html" class="xref page">File operations</a></p>
-</li>
-<li>
-<p><a href="installing-software.html" class="xref page">Installing software</a></p>
-</li>
-<li>
-<p><a href="systemd.html" class="xref page">Systemd</a></p>
-</li>
-<li>
-<p><a href="cockpit.html" class="xref page">RHEL User Interface: Cockpit</a></p>
-</li>
-<li>
-<p><a href="unpackaged-software.html" class="xref page">Installing unpackaged software</a></p>
-</li>
-<li>
-<p><a href="permissions.html" class="xref page">Permission &amp; ownerships</a></p>
-</li>
-</ul>
 </div>
-</li>
-</ul>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Starting Nmap 7.70 ( https://nmap.org ) at 2022-10-04 05:02 UTC
+Nmap scan report for dns.google (8.8.8.8)
+Host is up (0.011s latency).
+Not shown: 998 filtered ports
+PORT    STATE SERVICE
+53/tcp  open  domain
+443/tcp open  https
+
+Nmap done: 1 IP address (1 host up) scanned in 21.39 seconds</code></pre>
 </div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>3. Intermediate</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="tmux.html" class="xref page">Terminal multiplexer: tmux</a></p>
-</li>
-<li>
-<p><a href="nano.html" class="xref page">Code editor: nano</a></p>
-</li>
-<li>
-<p><a href="processes.html" class="xref page">Finding &amp; killing processes</a></p>
-</li>
-<li>
-<p><a href="os-stats.html" class="xref page">Gathering OS stats</a></p>
-</li>
-<li>
-<p><a href="open-ports.html" class="xref page">Looking at open ports</a></p>
-</li>
-<li>
-<p><a href="advanced-ssh.html" class="xref page">Advanced SSH</a></p>
-</li>
-<li>
-<p><a href="selinux-security.html" class="xref page">Security: SELinux</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>4. Free Resources</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="resources/cheat-sheets.html" class="xref page">Cheat sheets</a></p>
-</li>
-<li>
-<p><a href="resources/training.html" class="xref page">Red Hat training</a></p>
-</li>
-<li>
-<p><a href="resources/books.html" class="xref page">Books</a></p>
-</li>
-<li>
-<p><a href="resources/labs.html" class="xref page">Labs</a></p>
-</li>
-<li>
-<p><a href="resources/devnation.html" class="xref page">DevNation</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="introduction.html">Linux</a></span>
+  <span class="prev"><a href="os-stats.html">Gathering OS stats</a></span>
+  <span class="next"><a href="advanced-ssh.html">Advanced SSH</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

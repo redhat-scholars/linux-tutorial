@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Linux Deep Dive :: Linux Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/index.html">
-    <link rel="next" href="introduction.html">
+    <title>Cockpit :: Linux Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/cockpit.html">
+    <link rel="prev" href="systemd.html">
+    <link rel="next" href="unpackaged-software.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -99,7 +100,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="systemd.html">Systemd</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="cockpit.html">RHEL User Interface: Cockpit</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -169,179 +170,156 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Linux Tutorial</a></li>
-    <li><a href="index.html">Linux Deep Dive</a></li>
+    <li>2. Basics</li>
+    <li><a href="cockpit.html">RHEL User Interface: Cockpit</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/cockpit.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Linux Deep Dive</h1>
+<h1 class="page">Cockpit</h1>
 <div id="preamble">
 <div class="sectionbody">
+<div class="paragraph">
+<p>Cockpit is a simple-to-use, lightweight, web-based interface for Linux servers.
+You can manage storage, networking, firewall, containers, and much more right from your web browser, instead of needing to use the command line.
+Let&#8217;s look into how to install Cockpit, as well as some basic functionality.</p>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/rhel-logo.png" alt="RHEL Logo" width="600">
+<img src="_images/cockpit/cockpit.png" alt="Cockpit Interface" width="800">
 </div>
 </div>
 </div>
 </div>
-<div class="sect1 text-center strong">
-<h2>Welcome to your Linux Journey!</h2>
+<div class="sect1">
+<h2 id="install-cockpit"><a class="anchor" href="#install-cockpit"></a>Installing Cockpit</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This tutorial will provide you with an introduction to Linux skills, using <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux</a> (RHEL).</p>
+<p>Like any package, we can install Cockput using our package manager.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dnf install -y cockpit</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Updating Subscription Management repositories.
+Last metadata expiration check: 20:35:08 ago on Sun 02 Oct 2022 09:07:47 PM UTC.
+Dependencies resolved.
+================================================================================
+ Package                 Arch   Version        Repository                  Size
+================================================================================
+Installing:
+ cockpit                 x86_64 264.1-1.el8    rhel-8-baseos-rhui-rpms     79 k
+...
+Complete!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, we can run a <code>systemctl</code> command to start the Cockpit service.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo systemctl enable --now cockpit.socket</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Created symlink /etc/systemd/system/sockets.target.wants/cockpit.socket → /usr/lib/systemd/system/cockpit.socket.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, let&#8217;s access Cockpit by navigating to the server&#8217;s IP address followed by the port <code>9090</code>, in this format: <code><a href="https://ip-address:9090" class="bare">https://ip-address:9090</a></code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/cockpit/login.png" alt="Cockpit Login Page" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>From here, you can use your RHEL credentials that you made during setup to access the Cockpit interface.</p>
 </div>
 </div>
 </div>
-<div class="sect1 text-center strong">
-<h2>What is Red Hat Enterprise Linux?</h2>
+<div class="sect1">
+<h2 id="using-cockpit-metrics"><a class="anchor" href="#using-cockpit-metrics"></a>Using cockpit: Metrics</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now optimized for development. It supports every major programming language and latest version of each language. Additionally, RHEL includes a complete set of tools for developing for microservices, containers, and cloud-native applications. Learn more <a href="https://developers.redhat.com/products/rhel/overview">here</a>!</p>
+<p>Let&#8217;s firstly use Cockpit to get a real-time update on our machine&#8217;s performance metrics.
+From the Overview dashboard, select the <strong>View details and history</strong> to visit the metrics page.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/cockpit/dashboard-metrics.png" alt="Navigating to the metrics page" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Here, we can see our RHEL machine&#8217;s performance, including CPU utilization, memory, and disk space.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/cockpit/metrics-page.png" alt="Cockpit performance metrics page" width="800">
 </div>
 </div>
 </div>
-<div class="sect1 tiles browse">
-<h2>Tutorial Steps</h2>
+</div>
+<div class="sect1">
+<h2 id="using-cockpit-accounts"><a class="anchor" href="#using-cockpit-accounts"></a>Using cockpit: Accounts</h2>
 <div class="sectionbody">
-<div class="ulist tile">
-<ul>
-<li>
-<p>1. Getting Started</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="introduction.html" class="xref page">Linux</a></p>
-</li>
-<li>
-<p><a href="setup-lab.html" class="xref page">Accessing Linux</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html" class="xref page">Linux Installation</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="setup-vm.html#downloadingrhel" class="xref page">Downloading RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#virtualbox" class="xref page">Setting up VirtualBox</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#gettingstarted" class="xref page">Getting started with RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#rhel-cli" class="xref page">RHEL CLI</a></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>We can use Cockpit to create new accounts, and modify our existing ones.
+From the Overview dashboard, select the <strong>Accounts</strong> tab.</p>
 </div>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="_images/cockpit/dashboard-accounts.png" alt="Navigating to the accounts page" width="800">
 </div>
-</li>
-</ul>
 </div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>2. Basics</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="registering.html" class="xref page">Registering a RHEL system</a></p>
-</li>
-<li>
-<p><a href="basic-commands.html" class="xref page">Basic commands</a></p>
-</li>
-<li>
-<p><a href="file-operations.html" class="xref page">File operations</a></p>
-</li>
-<li>
-<p><a href="installing-software.html" class="xref page">Installing software</a></p>
-</li>
-<li>
-<p><a href="systemd.html" class="xref page">Systemd</a></p>
-</li>
-<li>
-<p><a href="cockpit.html" class="xref page">RHEL User Interface: Cockpit</a></p>
-</li>
-<li>
-<p><a href="unpackaged-software.html" class="xref page">Installing unpackaged software</a></p>
-</li>
-<li>
-<p><a href="permissions.html" class="xref page">Permission &amp; ownerships</a></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>The Accounts dashboard allows us to work with our machine&#8217;s accounts. Let&#8217;s select our current user for example.</p>
 </div>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="_images/cockpit/accounts-user-page.png" alt="Cockpit accounts interface" width="800">
 </div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>3. Intermediate</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="tmux.html" class="xref page">Terminal multiplexer: tmux</a></p>
-</li>
-<li>
-<p><a href="nano.html" class="xref page">Code editor: nano</a></p>
-</li>
-<li>
-<p><a href="processes.html" class="xref page">Finding &amp; killing processes</a></p>
-</li>
-<li>
-<p><a href="os-stats.html" class="xref page">Gathering OS stats</a></p>
-</li>
-<li>
-<p><a href="open-ports.html" class="xref page">Looking at open ports</a></p>
-</li>
-<li>
-<p><a href="advanced-ssh.html" class="xref page">Advanced SSH</a></p>
-</li>
-<li>
-<p><a href="selinux-security.html" class="xref page">Security: SELinux</a></p>
-</li>
-</ul>
 </div>
-</li>
-</ul>
+<div class="paragraph">
+<p>Cockpit provides an easy GUI to give our user administrative permission, logs of login history, changing the password, and even modifying authorized SSH keys.</p>
 </div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>4. Free Resources</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="resources/cheat-sheets.html" class="xref page">Cheat sheets</a></p>
-</li>
-<li>
-<p><a href="resources/training.html" class="xref page">Red Hat training</a></p>
-</li>
-<li>
-<p><a href="resources/books.html" class="xref page">Books</a></p>
-</li>
-<li>
-<p><a href="resources/labs.html" class="xref page">Labs</a></p>
-</li>
-<li>
-<p><a href="resources/devnation.html" class="xref page">DevNation</a></p>
-</li>
-</ul>
 </div>
-</li>
-</ul>
+</div>
+<div class="sect1">
+<h2 id="using-cockpit-terminal"><a class="anchor" href="#using-cockpit-terminal"></a>Using cockpit: Terminal</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A simple feature of Cockpit is that it provides a standard shell in a terminal, which allows for the same privileges as if you had logged in through SSH.
+From the Overview dashboard, select the <strong>Terminal</strong> tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/cockpit/dashboard-terminal.png" alt="Navigating to the terminal page" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Here, we can do anything we could do over SSH, but instead in our web browser.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/cockpit/terminal.png" alt="Cockpit terminal interface" width="800">
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="introduction.html">Linux</a></span>
+  <span class="prev"><a href="systemd.html">Systemd</a></span>
+  <span class="next"><a href="unpackaged-software.html">Installing unpackaged software</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

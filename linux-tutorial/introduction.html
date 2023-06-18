@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Linux Deep Dive :: Linux Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/index.html">
-    <link rel="next" href="introduction.html">
+    <title>Getting Started :: Linux Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/introduction.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="setup-lab.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -54,7 +55,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">1. Getting Started</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="introduction.html">Linux</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -169,179 +170,89 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Linux Tutorial</a></li>
-    <li><a href="index.html">Linux Deep Dive</a></li>
+    <li>1. Getting Started</li>
+    <li><a href="introduction.html">Linux</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/introduction.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Linux Deep Dive</h1>
-<div id="preamble">
+<h1 class="page">Getting Started</h1>
+<div class="sect1">
+<h2 id="linux"><a class="anchor" href="#linux"></a>What is Linux?</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="_images/rhel-logo.png" alt="RHEL Logo" width="600">
+<img src="_images/introduction/linux-banner.png" alt="Linux banner" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Linux</strong> is an <strong>open source operating system</strong> (OS).</p>
+</div>
+<div class="paragraph">
+<p>An operating system is the software that directly manages a system’s hardware and resources, like CPU, memory, and storage.</p>
+</div>
+<div class="paragraph">
+<p>The OS sits between applications and hardware and makes the connections between all of your software and the physical resources that do the work.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1 text-center strong">
-<h2>Welcome to your Linux Journey!</h2>
+<div class="sect1">
+<h2 id="linux-work"><a class="anchor" href="#linux-work"></a>How does Linux work?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This tutorial will provide you with an introduction to Linux skills, using <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux</a> (RHEL).</p>
+<p>Linux was designed to be similar to UNIX, but has evolved to run on a wide variety of hardware from phones to supercomputers.</p>
+</div>
+<div class="paragraph">
+<p>Every Linux-based OS involves the <strong>Linux kernel</strong>—which manages hardware resources—and a set of software packages that make up the rest of the operating system.</p>
+</div>
+<div class="paragraph">
+<p>The OS includes some common core components, like the <strong>GNU tools</strong>, among others.</p>
 </div>
 </div>
 </div>
-<div class="sect1 text-center strong">
-<h2>What is Red Hat Enterprise Linux?</h2>
+<div class="sect1">
+<h2 id="linux-include"><a class="anchor" href="#linux-include"></a>What does Linux include?</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/introduction/linux-include.png" alt="Components of linux" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Linux is comprised of several important parts, including the:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Kernel: The core part of Linux, responsible for all major activities of this operating system.</p>
+</li>
+<li>
+<p>System user space: All of the code in an operating system that lives outside of the kernel.</p>
+</li>
+<li>
+<p>Applications: Software applications designed for Linux or Unix systems, mainly distributed as packages.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lab-prep"><a class="anchor" href="#lab-prep"></a>What&#8217;s in this Linux Deep Dive?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now optimized for development. It supports every major programming language and latest version of each language. Additionally, RHEL includes a complete set of tools for developing for microservices, containers, and cloud-native applications. Learn more <a href="https://developers.redhat.com/products/rhel/overview">here</a>!</p>
-</div>
-</div>
-</div>
-<div class="sect1 tiles browse">
-<h2>Tutorial Steps</h2>
-<div class="sectionbody">
-<div class="ulist tile">
-<ul>
-<li>
-<p>1. Getting Started</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="introduction.html" class="xref page">Linux</a></p>
-</li>
-<li>
-<p><a href="setup-lab.html" class="xref page">Accessing Linux</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html" class="xref page">Linux Installation</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="setup-vm.html#downloadingrhel" class="xref page">Downloading RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#virtualbox" class="xref page">Setting up VirtualBox</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#gettingstarted" class="xref page">Getting started with RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#rhel-cli" class="xref page">RHEL CLI</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>2. Basics</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="registering.html" class="xref page">Registering a RHEL system</a></p>
-</li>
-<li>
-<p><a href="basic-commands.html" class="xref page">Basic commands</a></p>
-</li>
-<li>
-<p><a href="file-operations.html" class="xref page">File operations</a></p>
-</li>
-<li>
-<p><a href="installing-software.html" class="xref page">Installing software</a></p>
-</li>
-<li>
-<p><a href="systemd.html" class="xref page">Systemd</a></p>
-</li>
-<li>
-<p><a href="cockpit.html" class="xref page">RHEL User Interface: Cockpit</a></p>
-</li>
-<li>
-<p><a href="unpackaged-software.html" class="xref page">Installing unpackaged software</a></p>
-</li>
-<li>
-<p><a href="permissions.html" class="xref page">Permission &amp; ownerships</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>3. Intermediate</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="tmux.html" class="xref page">Terminal multiplexer: tmux</a></p>
-</li>
-<li>
-<p><a href="nano.html" class="xref page">Code editor: nano</a></p>
-</li>
-<li>
-<p><a href="processes.html" class="xref page">Finding &amp; killing processes</a></p>
-</li>
-<li>
-<p><a href="os-stats.html" class="xref page">Gathering OS stats</a></p>
-</li>
-<li>
-<p><a href="open-ports.html" class="xref page">Looking at open ports</a></p>
-</li>
-<li>
-<p><a href="advanced-ssh.html" class="xref page">Advanced SSH</a></p>
-</li>
-<li>
-<p><a href="selinux-security.html" class="xref page">Security: SELinux</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>4. Free Resources</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="resources/cheat-sheets.html" class="xref page">Cheat sheets</a></p>
-</li>
-<li>
-<p><a href="resources/training.html" class="xref page">Red Hat training</a></p>
-</li>
-<li>
-<p><a href="resources/books.html" class="xref page">Books</a></p>
-</li>
-<li>
-<p><a href="resources/labs.html" class="xref page">Labs</a></p>
-</li>
-<li>
-<p><a href="resources/devnation.html" class="xref page">DevNation</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>In this Linux Tutorial Deep Dive, you&#8217;ll be learning a variety of things, from how to install a RHEL virtual machine, to basic Linux commands, to more advanced code editors, SELinux, and more. Let&#8217;s begin!</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="introduction.html">Linux</a></span>
+  <span class="prev"><a href="index.html">Linux Tutorial</a></span>
+  <span class="next"><a href="setup-lab.html">Accessing Linux</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

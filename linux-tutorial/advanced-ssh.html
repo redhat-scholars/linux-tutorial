@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Linux Deep Dive :: Linux Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/index.html">
-    <link rel="next" href="introduction.html">
+    <title>Advanced SSH :: Linux Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/advanced-ssh.html">
+    <link rel="prev" href="open-ports.html">
+    <link rel="next" href="selinux-security.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -129,7 +130,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="open-ports.html">Looking at open ports</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="advanced-ssh.html">Advanced SSH</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -169,179 +170,115 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Linux Tutorial</a></li>
-    <li><a href="index.html">Linux Deep Dive</a></li>
+    <li>3. Intermediate</li>
+    <li><a href="advanced-ssh.html">Advanced SSH</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/advanced-ssh.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Linux Deep Dive</h1>
+<h1 class="page">Advanced SSH</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="imageblock">
+<div class="paragraph">
+<p>SSH (Secure Shell) is a protocol which facilitates secure communications between two systems using a client-server architecture and allows users to log in to server host systems remotely.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="using-ssh-keygen"><a class="anchor" href="#using-ssh-keygen"></a>Using ssh-keygen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>ssh-keygen</code> is a tool for creating new authentication key pairs for SSH. Such key pairs are used for automating logins, single sign-on, and for authenticating hosts.
+There&#8217;s no need to use arguments for this tool, as it will prompt for for a file to store keys, and associated passphrase.</p>
+</div>
+<div class="listingblock console-input">
 <div class="content">
-<img src="_images/rhel-logo.png" alt="RHEL Logo" width="600">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ssh-keygen</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Enter file in which to save the key (/home/ec2-user/.ssh/id_rsa): ssh-key
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in ssh-key.
+Your public key has been saved in ssh-key.pub.
+The key fingerprint is:
+SHA256:sS8LTj0bVA+ECZqbrEvHuiAYIQuuqcbjT6vCjSusp48 ec2-user@ip-172-31-17-21.us-east-2.compute.internal
+The key's randomart image is:
++---[RSA 3072]----+
+|      .. o.      |
+|     o  o.       |
+|+   o   . o      |
+|+o . o   + o     |
+|o.  +   S   .    |
+|oo o   o .       |
+|X =.o o = .      |
+|=@o=.o . *       |
+|EBX+  . o        |
++----[SHA256]-----+</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Congrats! You now have a public and private key that you can use to authenticate. Now, let&#8217;s place the public key on your server so you can use SSH-key-based authentication to sign on.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1 text-center strong">
-<h2>Welcome to your Linux Journey!</h2>
+<div class="sect1">
+<h2 id="using-ssh-copy-id"><a class="anchor" href="#using-ssh-copy-id"></a>Using ssh-copy-id</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This tutorial will provide you with an introduction to Linux skills, using <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux</a> (RHEL).</p>
+<p>The <code>ssh-copy-id</code> command allows you to add a public key to a remote machine&#8217;s authorized_keys file. The command goes as follows.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ssh-copy-id username@remote_host_ip</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">The authenticity of host 'remote_host_ip' can't be established.
+ECDSA key fingerprint is f1:d7:e8:f2:44:fe:34:71:e6:11:98:da:d9:3e:51:ff.
+Are you sure you want to continue connecting (yes/no)? yes</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, after typing in your password, the tool will copy the contents of your SSH key into the remote account&#8217;s authorized key folder, and you can use <code>ssh</code> normally to login.</p>
 </div>
 </div>
 </div>
-<div class="sect1 text-center strong">
-<h2>What is Red Hat Enterprise Linux?</h2>
+<div class="sect1">
+<h2 id="using-scp"><a class="anchor" href="#using-scp"></a>Using scp</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now optimized for development. It supports every major programming language and latest version of each language. Additionally, RHEL includes a complete set of tools for developing for microservices, containers, and cloud-native applications. Learn more <a href="https://developers.redhat.com/products/rhel/overview">here</a>!</p>
+<p>Similarly, you can use the secure copy command (<code>scp</code>), in conjunction with ssh key authentication, for an even more secure means of copying files to your remote Linux servers.
+Use the format of the following command to send a file to your remote server using your ssh key.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">scp -i ~/.ssh/id_rsa.pub filename username@remote_host_ip:/home/username/filename</code></pre>
 </div>
 </div>
 </div>
-<div class="sect1 tiles browse">
-<h2>Tutorial Steps</h2>
+</div>
+<div class="sect1">
+<h2 id="ssh-config"><a class="anchor" href="#ssh-config"></a>SSH configuration</h2>
 <div class="sectionbody">
-<div class="ulist tile">
-<ul>
-<li>
-<p>1. Getting Started</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="introduction.html" class="xref page">Linux</a></p>
-</li>
-<li>
-<p><a href="setup-lab.html" class="xref page">Accessing Linux</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html" class="xref page">Linux Installation</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="setup-vm.html#downloadingrhel" class="xref page">Downloading RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#virtualbox" class="xref page">Setting up VirtualBox</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#gettingstarted" class="xref page">Getting started with RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#rhel-cli" class="xref page">RHEL CLI</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>2. Basics</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="registering.html" class="xref page">Registering a RHEL system</a></p>
-</li>
-<li>
-<p><a href="basic-commands.html" class="xref page">Basic commands</a></p>
-</li>
-<li>
-<p><a href="file-operations.html" class="xref page">File operations</a></p>
-</li>
-<li>
-<p><a href="installing-software.html" class="xref page">Installing software</a></p>
-</li>
-<li>
-<p><a href="systemd.html" class="xref page">Systemd</a></p>
-</li>
-<li>
-<p><a href="cockpit.html" class="xref page">RHEL User Interface: Cockpit</a></p>
-</li>
-<li>
-<p><a href="unpackaged-software.html" class="xref page">Installing unpackaged software</a></p>
-</li>
-<li>
-<p><a href="permissions.html" class="xref page">Permission &amp; ownerships</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>3. Intermediate</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="tmux.html" class="xref page">Terminal multiplexer: tmux</a></p>
-</li>
-<li>
-<p><a href="nano.html" class="xref page">Code editor: nano</a></p>
-</li>
-<li>
-<p><a href="processes.html" class="xref page">Finding &amp; killing processes</a></p>
-</li>
-<li>
-<p><a href="os-stats.html" class="xref page">Gathering OS stats</a></p>
-</li>
-<li>
-<p><a href="open-ports.html" class="xref page">Looking at open ports</a></p>
-</li>
-<li>
-<p><a href="advanced-ssh.html" class="xref page">Advanced SSH</a></p>
-</li>
-<li>
-<p><a href="selinux-security.html" class="xref page">Security: SELinux</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>4. Free Resources</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="resources/cheat-sheets.html" class="xref page">Cheat sheets</a></p>
-</li>
-<li>
-<p><a href="resources/training.html" class="xref page">Red Hat training</a></p>
-</li>
-<li>
-<p><a href="resources/books.html" class="xref page">Books</a></p>
-</li>
-<li>
-<p><a href="resources/labs.html" class="xref page">Labs</a></p>
-</li>
-<li>
-<p><a href="resources/devnation.html" class="xref page">DevNation</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<div class="paragraph">
+<p>SSH clients can be configured using a global or local configuration file to save time and typing frequently used ssh client command-line options such as port, user, hostname, and more.
+This is found in the <code>.ssh/config</code> file on a system, and more information can be found <a href="https://linux.die.net/man/5/ssh_config">here</a>.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="introduction.html">Linux</a></span>
+  <span class="prev"><a href="open-ports.html">Looking at open ports</a></span>
+  <span class="next"><a href="selinux-security.html">Security: SELinux</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

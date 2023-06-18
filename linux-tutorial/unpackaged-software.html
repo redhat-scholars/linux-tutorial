@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Installing unpackaged software :: Linux Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/unpackaged-software.html">
+    <link rel="prev" href="cockpit.html">
+    <link rel="next" href="permissions.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/linux-tutorial">Linux Tutorial</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="linux-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">1. Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="introduction.html">Linux</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="setup-lab.html">Accessing Linux</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="setup-vm.html">Linux Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="setup-vm.html#downloadingrhel">Downloading RHEL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="setup-vm.html#virtualbox">Setting up VirtualBox</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="setup-vm.html#gettingstarted">Getting started with RHEL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="setup-vm.html#rhel-cli">RHEL CLI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">2. Basics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="registering.html">Registering a RHEL system</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="basic-commands.html">Basic commands</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="file-operations.html">File operations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="installing-software.html">Installing software</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="systemd.html">Systemd</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cockpit.html">RHEL User Interface: Cockpit</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="unpackaged-software.html">Installing unpackaged software</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="permissions.html">Permission &amp; ownerships</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">3. Intermediate</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tmux.html">Terminal multiplexer: tmux</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nano.html">Code editor: nano</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="processes.html">Finding &amp; killing processes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="os-stats.html">Gathering OS stats</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="open-ports.html">Looking at open ports</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="advanced-ssh.html">Advanced SSH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="selinux-security.html">Security: SELinux</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">4. Free Resources</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resources/cheat-sheets.html">Cheat sheets</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resources/training.html">Red Hat training</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resources/books.html">Books</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resources/labs.html">Labs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resources/devnation.html">DevNation</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Linux Tutorial</a></li>
+    <li>2. Basics</li>
+    <li><a href="unpackaged-software.html">Installing unpackaged software</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/unpackaged-software.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Installing unpackaged software</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In some cases, you&#8217;ll need to install an application from it&#8217;s source code.
+Let&#8217;s take a look at how to compile and install new software using RHEL.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="downloading-source"><a class="anchor" href="#downloading-source"></a>Downloading the source code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While there are plenty of applications we could install, let&#8217;s take <a href="https://www.vim.org/">Vim</a> for example.
+Vim is a popular text editor used in most Linux systems, and is simple to use.
+First, let&#8217;s go to the <a href="https://github.com/vim/vim/tags">release page</a> for Vim, and download the most recent <code>tar.gz</code>, which contains the software in a compressed tar format.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/software/github.png" alt="Github release page" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Right-click and copy the link address for this specific release so we can then download it in our RHEL machine.
+Next, let&#8217;s use <code>curl</code> to download this specific <code>tar.gz</code> link to our local machine.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">curl -OL https://github.com/vim/vim/archive/refs/tags/v9.0.0652.tar.gz</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 16.0M  100 16.0M    0     0  45.5M      0 --:--:-- --:--:-- --:--:-- 45.5M</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After a few seconds, we&#8217;ll see that the file has been downloaded in our current directory.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ls</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Downloads  file1.txt  file2.txt  v9.0.0652.tar.gz</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="unpacking-file"><a class="anchor" href="#unpacking-file"></a>Extracting the archive</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To extract the source code from the package, we can use the <code>tar</code> command with a few arguments like so.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tar xvf v9.0.0652.tar.gz</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After everything has been extracted, you&#8217;ll now have a new file in your local directory, named <code>v9.0.0652</code> or the respective name of the downloaded <code>tar</code> file.
+Let&#8217;s do a quick <code>cd</code> command to change directories into this new folder, and list the items in our directory.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd vim-9.0.0652
+ls</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ci               Filelist  nsis       README.md       runtime  uninstall.txt
+configure        LICENSE   pixmaps    README.txt      src      vimtutor.bat
+CONTRIBUTING.md  Makefile  READMEdir  README_VIM9.md  tools    vimtutor.com</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-souce"><a class="anchor" href="#installing-souce"></a>Installing the source code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that we&#8217;re in the newly extracted folder, we can install the unpackaged software.
+Firstly, however, we need to install the development tools, which include gcc, our C compiler, and more.
+This can be done by using <code>dnf</code> as we have done before, with the following command. You&#8217;ll also need a terminal library, for this we can use <code>ncurses</code>.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dnf groupinstall "Development Tools" &amp;&amp; dnf install ncurses-devel</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Last metadata expiration check: 1:39:22 ago on Mon 03 Oct 2022 06:02:11 PM UTC.
+Dependencies resolved.
+=================================================================================================
+ Package                         Arch   Version                 Repository                  Size
+=================================================================================================
+Upgrading:
+ glibc                           x86_64 2.28-189.5.el8_6        rhel-8-baseos-rhui-rpms    2.2 M
+ glibc-all-langpacks             x86_64 2.28-189.5.el8_6        rhel-8-baseos-rhui-rpms     25 M
+ glibc-common                    x86_64 2.28-189.5.el8_6        rhel-8-baseos-rhui-rpms    1.3 M
+ glibc-gconv-extra               x86_64 2.28-189.5.el8_6        rhel-8-baseos-rhui-rpms    1.5 M
+ glibc-langpack-en               x86_64 2.28-189.5.el8_6        rhel-8-baseos-rhui-rpms    834 k
+ libgcc                          x86_64 8.5.0-10.1.el8_6        rhel-8-baseos-rhui-rpms     80 k
+...
+Complete!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, we can run the <code>configure</code> script in the folder, using the following command. This will analyze the system, and produce a Makefile that contains the logic to build and install the package.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./configure</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">configure: loading cache auto/config.cache
+checking whether make sets $(MAKE)... yes
+checking for gcc... gcc
+checking whether the C compiler works... yes
+...
+config.status: creating auto/config.h</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, we can compile the source code to generate the binaries using the <code>make</code> command.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">make</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Starting make in the src directory.
+...
+make[1]: Leaving directory '/home/ec2-user/vim-9.0.0652/src'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Almost there! After <code>make</code> completes, the binary files are ready to install.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">make install</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Starting make in the src directory.
+...
+make[1]: Leaving directory '/home/ec2-user/vim-9.0.0652/src'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Congratulations! <code>vim</code> should now be installed properly on your system, and you can double check the installation with the following command.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">vim --version</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">VIM - Vi IMproved 9.0 (2022 Jun 28, compiled Oct  3 2022 19:57:18)
+Included patches: 1-652
+Compiled by ec2-user@ip-172-31-17-21.us-east-2.compute.internal</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="cockpit.html">RHEL User Interface: Cockpit</a></span>
+  <span class="next"><a href="permissions.html">Permission &amp; ownerships</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Linux Deep Dive :: Linux Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/index.html">
-    <link rel="next" href="introduction.html">
+    <title>Terminal multiplexer: tmux :: Linux Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/tmux.html">
+    <link rel="prev" href="permissions.html">
+    <link rel="next" href="nano.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -114,7 +115,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">3. Intermediate</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="tmux.html">Terminal multiplexer: tmux</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -169,179 +170,120 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Linux Tutorial</a></li>
-    <li><a href="index.html">Linux Deep Dive</a></li>
+    <li>3. Intermediate</li>
+    <li><a href="tmux.html">Terminal multiplexer: tmux</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/tmux.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Linux Deep Dive</h1>
+<h1 class="page">Terminal multiplexer: tmux</h1>
 <div id="preamble">
 <div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://github.com/tmux/tmux">Tmux</a> is an open source application that adds layers (or "windows," in tmux terminology) to your terminal window so that you can open more than one terminal in a single desktop window.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-tmux"><a class="anchor" href="#installing-tmux"></a>Installing tmux</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To get started with the <code>tmux</code> terminal multiplexer, we simply need to install <code>tmux</code> using <code>dnf</code>.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dnf install -y tmux</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Updating Subscription Management repositories.
+Last metadata expiration check: 1:31:37 ago on Tue 04 Oct 2022 01:21:12 AM UTC.
+Dependencies resolved.
+===========================================================================================================
+ Package           Architecture        Version                  Repository                            Size
+===========================================================================================================
+Installing:
+ tmux              x86_64              2.7-1.el8                rhel-8-baseos-rhui-rpms              317 k
+
+Transaction Summary
+===========================================================================================================
+Install  1 Package
+...
+Complete!</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="starting-with-tmux"><a class="anchor" href="#starting-with-tmux"></a>Getting started with tmux</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here, we can now start our first <code>tmux</code> session by simply typing <code>tmux</code> in the terminal. You&#8217;ll notice everything stays the same, except for the green line at the bottom of our terminal, indicating we&#8217;re connected to a <code>tmux</code> server as a client.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">tmux</code></pre>
+</div>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/rhel-logo.png" alt="RHEL Logo" width="600">
+<img src="_images/tmux.png" alt="tmux dashboard" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Now, we can begin to utilize the pane management capabilities of <code>tmux</code> but using shortcuts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Horizontal split: <code>Ctrl-b "</code></p>
+</li>
+<li>
+<p>Vertical split: <code>Ctrl-b %</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll need to first do <code>Ctrl-b</code>, letting <code>tmux</code> know you&#8217;re about to give it a command, then the key for vertical/horizontal afterwards. For example, if you do a horizontal split and a vertical split, your terminal window should look like so.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tmux-split.png" alt="tmux split dashboard" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>You can now use the <code>Ctrl-b</code> with any arrow of your choice to move around the various windows. Pretty neat!</p>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1 text-center strong">
-<h2>Welcome to your Linux Journey!</h2>
+<div class="sect1">
+<h2 id="tmux-window-management"><a class="anchor" href="#tmux-window-management"></a>Window Management with tmux</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This tutorial will provide you with an introduction to Linux skills, using <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux</a> (RHEL).</p>
+<p>Perhaps you&#8217;d like multiple windows to split into panes and run commands, much like a traditional web browser.
+<code>tmux</code> provides support to do so using the <code>Ctrl-b c</code> feature to create new windows.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/tmux-windows.png" alt="tmux window dashboard" width="800">
 </div>
 </div>
-</div>
-<div class="sect1 text-center strong">
-<h2>What is Red Hat Enterprise Linux?</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now optimized for development. It supports every major programming language and latest version of each language. Additionally, RHEL includes a complete set of tools for developing for microservices, containers, and cloud-native applications. Learn more <a href="https://developers.redhat.com/products/rhel/overview">here</a>!</p>
-</div>
-</div>
-</div>
-<div class="sect1 tiles browse">
-<h2>Tutorial Steps</h2>
-<div class="sectionbody">
-<div class="ulist tile">
-<ul>
-<li>
-<p>1. Getting Started</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="introduction.html" class="xref page">Linux</a></p>
-</li>
-<li>
-<p><a href="setup-lab.html" class="xref page">Accessing Linux</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html" class="xref page">Linux Installation</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="setup-vm.html#downloadingrhel" class="xref page">Downloading RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#virtualbox" class="xref page">Setting up VirtualBox</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#gettingstarted" class="xref page">Getting started with RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#rhel-cli" class="xref page">RHEL CLI</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>2. Basics</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="registering.html" class="xref page">Registering a RHEL system</a></p>
-</li>
-<li>
-<p><a href="basic-commands.html" class="xref page">Basic commands</a></p>
-</li>
-<li>
-<p><a href="file-operations.html" class="xref page">File operations</a></p>
-</li>
-<li>
-<p><a href="installing-software.html" class="xref page">Installing software</a></p>
-</li>
-<li>
-<p><a href="systemd.html" class="xref page">Systemd</a></p>
-</li>
-<li>
-<p><a href="cockpit.html" class="xref page">RHEL User Interface: Cockpit</a></p>
-</li>
-<li>
-<p><a href="unpackaged-software.html" class="xref page">Installing unpackaged software</a></p>
-</li>
-<li>
-<p><a href="permissions.html" class="xref page">Permission &amp; ownerships</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>3. Intermediate</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="tmux.html" class="xref page">Terminal multiplexer: tmux</a></p>
-</li>
-<li>
-<p><a href="nano.html" class="xref page">Code editor: nano</a></p>
-</li>
-<li>
-<p><a href="processes.html" class="xref page">Finding &amp; killing processes</a></p>
-</li>
-<li>
-<p><a href="os-stats.html" class="xref page">Gathering OS stats</a></p>
-</li>
-<li>
-<p><a href="open-ports.html" class="xref page">Looking at open ports</a></p>
-</li>
-<li>
-<p><a href="advanced-ssh.html" class="xref page">Advanced SSH</a></p>
-</li>
-<li>
-<p><a href="selinux-security.html" class="xref page">Security: SELinux</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>4. Free Resources</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="resources/cheat-sheets.html" class="xref page">Cheat sheets</a></p>
-</li>
-<li>
-<p><a href="resources/training.html" class="xref page">Red Hat training</a></p>
-</li>
-<li>
-<p><a href="resources/books.html" class="xref page">Books</a></p>
-</li>
-<li>
-<p><a href="resources/labs.html" class="xref page">Labs</a></p>
-</li>
-<li>
-<p><a href="resources/devnation.html" class="xref page">DevNation</a></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>From here, you can have multiple windows, each with different commands and packages running.
+To switch around windows, simply use the <code>Ctrl-b</code> shortcut, then select which window you&#8217;d like to switch to from the green menu bar at the bottom of the terminal (ex. <code>Ctrl-b 2</code> for Vim).</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="introduction.html">Linux</a></span>
+  <span class="prev"><a href="permissions.html">Permission &amp; ownerships</a></span>
+  <span class="next"><a href="nano.html">Code editor: nano</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

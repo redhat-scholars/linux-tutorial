@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Setup VM :: Linux Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/setup-vm.html">
+    <link rel="prev" href="setup-lab.html">
+    <link rel="next" href="registering.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img src="../_/img/NewRHDFullLogo_4-color_white-wordmark.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="https://redhat-scholars.github.io/linux-tutorial">Linux Tutorial</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="linux-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html"></a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">1. Getting Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="introduction.html">Linux</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="setup-lab.html">Accessing Linux</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="setup-vm.html">Linux Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#downloadingrhel">Downloading RHEL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#virtualbox">Setting up VirtualBox</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#gettingstarted">Getting started with RHEL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#rhel-cli">RHEL CLI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">2. Basics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="registering.html">Registering a RHEL system</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="basic-commands.html">Basic commands</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="file-operations.html">File operations</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="installing-software.html">Installing software</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="systemd.html">Systemd</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cockpit.html">RHEL User Interface: Cockpit</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="unpackaged-software.html">Installing unpackaged software</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="permissions.html">Permission &amp; ownerships</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">3. Intermediate</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="tmux.html">Terminal multiplexer: tmux</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="nano.html">Code editor: nano</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="processes.html">Finding &amp; killing processes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="os-stats.html">Gathering OS stats</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="open-ports.html">Looking at open ports</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="advanced-ssh.html">Advanced SSH</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="selinux-security.html">Security: SELinux</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">4. Free Resources</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resources/cheat-sheets.html">Cheat sheets</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resources/training.html">Red Hat training</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resources/books.html">Books</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resources/labs.html">Labs</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="resources/devnation.html">DevNation</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Linux Tutorial</a></li>
+    <li>1. Getting Started</li>
+    <li><a href="setup-vm.html">Linux Installation</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/setup-vm.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Setup VM</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to work begin using Red Hat Enterprise Linux in this lab, you may also want to run a RHEL virtual machine on your computer to keep your work and progress. This section will teach you how to download the operating system, install it on VirtualBox, and configure your RHEL machine once started.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you&#8217;re using a M1 based Mac machine, please use <a href="https://www.youtube.com/watch?v=NFuwmZYhvv8">this</a> tutorial for installing RHEL.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="downloadingrhel"><a class="anchor" href="#downloadingrhel"></a>Downloading RHEL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first step to working with Red Hat Enterprise Linux is downloading via the <a href="https://developers.redhat.com/products/rhel/download">Red Hat Developer program</a>.
+On the Red Hat Developer page, scroll down to see the list of available RHEL image downloads, and download the <strong>x86_64 Boot iso</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/download-rhel.png" alt="Download RHEL Button" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>From here, sign in to your Red Hat account or create a new account, and the download will start automatically.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/red-hat-account-login.png" alt="Red Hat Account Login" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>You now have a bootable RHEL <code>.iso</code> that we can use VirtualBox to run.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="virtualbox"><a class="anchor" href="#virtualbox"></a>Setting up VirtualBox</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://www.virtualbox.org/">VirtualBox</a> can be used to run operating systems in a special environment, called a virtual machine, on top of the existing operating system.
+We&#8217;ll use it to install the RHEL VM in this tutorial, so head to the VirtualBox <a href="https://www.virtualbox.org/wiki/Downloads">downloads page</a> to download the correct platform package for your machine.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/download-virtualbox.png" alt="Download VirtualBox" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>After installing and opening VirtualBox, you should be greeted at the homepage, where we&#8217;ll click on the <strong>New</strong> button to create a new VM.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/new-virtualbox.png" alt="Create new Virtualbox" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>From here, give this virtual machine a name, for example <em>RHEL</em>, and feel free to use the default machine folder location, which stores your virtual machine files.
+Under <strong>Version</strong>, be sure to select <em>Red Hat (64-bit)</em> if it hasn&#8217;t already pre-populated. Click continue from here.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/name-new-vm.png" alt="Name &amp; specify your new virtual machine" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Now, while the reccomended memory size is 1024 MB (1 GB), feel free to increase this to 2048 MB (2 GB) for normal usage.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/virtualbox-ram.png" alt="Allocating RAM to the virtual machine" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Select the default option to create a virtual hard disk now, and hit create. For the hard disk file type, select <em>VirtualBox Disk Image</em> (VDI, recommended for normal usage), and select <em>Dynamically allocated</em> on the next prompt (also reccomended for daily usage).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/virtualbox-harddisk.png" alt="Creating a virtual hard disk for the VM" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Next, select the File location and size for the virtual hard disk. You can leave the default location, but select a size of 20 GB to ensure enough space for packages and downloads. Hit create to continue.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/virtualbox-harddisk-size.png" alt="Selecting the hard disk size" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, we need to attach the downloaded RHEL .iso file to our virtual machine. After selecting our RHEL VM, hit the settings menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/virtualbox-settings.png" alt="Entering the VirtualBox VM settings" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Under the storage section, select the <em>Empty</em> tab under Controller: IDE. Here, we can click on the CD icon and select <strong>*Choose a disk file&#8230;&#8203;</strong> to select our downloaded .iso file.
+Navigate to where you downloaded the RHEL .iso, and load it into VirtualBox.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/virtualbox-storage.png" alt="Adding the .iso file to our operating system" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Once loaded in, hit <strong>Ok</strong> to leave the storage, and return to the VirtualBox dashboard. Now, simply press <strong>Start</strong> to launch Red Hat Enterprise Linux!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/virtualbox-start.png" alt="Starting the RHEL VM" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="gettingstarted"><a class="anchor" href="#gettingstarted"></a>Getting Started with RHEL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once you start the RHEL virtual machine, you&#8217;ll be greeted by the Red Hat Boot Loader. Simply click into the VM and press enter to begin with the default RHEL installation process.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-bootloader.png" alt="Starting the RHEL VM" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>In around a minute, the installation wizard will start and ask you for your language. Select this, and proceed to configure the rest of your RHEL machine.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-language-select.png" alt="Selecting the default language for RHEL" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>In addition, if you&#8217;d like to make the VirtualBox screen larger, head down to the window size control under the GUI and select <strong>Scale to 200%</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/virtualbox-window-resize.png" alt="Resizing the VirtualBox window" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The configuration items include selecting your time &amp; date, connecting to a Red Hat account, software selection, specifying installation destination, and root password/user creation.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-installation-menu.png" alt="RHEL installation menu" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Firstly, be sure to connect your Red Hat account to RHEL. Feel free to use your existing credentials that you used to download the .iso image, or if needed, create a new account <a href="https://www.redhat.com/wapps/ugc/register.html">here</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-register.png" alt="Connecting to Red Hat from RHEL" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>We won&#8217;t be needing the complete RHEL Server with GUI for this tutorial, so select Software Selection and choose Minimal install.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-software-install.png" alt="RHEL minimal software install" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Next, specify the installation destination. Nothing is needed to be done here as we are using a virtual machine, so you can leave this section after confirming the 20 GB drive that we created earlier.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-installation.png" alt="Confirming the correct RHEL installation" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>The last steps involve user settings. From the installation summary, click on <strong>Root password</strong>, and select a root password of your choice. Once finished here, click <strong>*Done</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-root-password.png" alt="Setting up RHEL root password" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>In addition, be sure to create a user other than root to work with. Again, create the credentials, and hit <strong>Done</strong> when finished.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-user-password.png" alt="Setting up RHEL user password" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Once you&#8217;ve finished all the configuration tasks, you&#8217;re ready to begin the installation of RHEL.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-install.png" alt="Installing RHEL" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>It may take a bit of time to prepare the installation and install packages, but once finished installing you&#8217;ll be prompted to reboot the system.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-reboot.png" alt="Rebooting RHEL once installed" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Once the Red Hat Enterprise Linux virtual machine has rebooted, you should now be in the RHEL CLI, ready to begin.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rhel-cli"><a class="anchor" href="#rhel-cli"></a>RHEL CLI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With the RHEL machine running, the last step is to log into your previously created account. We recommend logging into <code>root</code> for this tutorial.
+First, enter the login, and hit enter. Then, enter your password, and hit enter.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup/rhel-login.png" alt="Logging into the RHEL Machine" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>You&#8217;re now ready to begin the Linux tutorial!</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="setup-lab.html">Accessing Linux</a></span>
+  <span class="next"><a href="registering.html">Registering a RHEL system</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

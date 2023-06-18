@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Linux Deep Dive :: Linux Tutorial</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/index.html">
-    <link rel="next" href="introduction.html">
+    <title>Basic commands :: Linux Tutorial</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/linux-tutorial/linux-tutorial/basic-commands.html">
+    <link rel="prev" href="registering.html">
+    <link rel="next" href="file-operations.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
   </head>
@@ -87,7 +88,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="registering.html">Registering a RHEL system</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="basic-commands.html">Basic commands</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -169,179 +170,148 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Linux Tutorial</a></li>
-    <li><a href="index.html">Linux Deep Dive</a></li>
+    <li>2. Basics</li>
+    <li><a href="basic-commands.html">Basic commands</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/linux-tutorial/edit/master/documentation/modules/ROOT/pages/basic-commands.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Linux Deep Dive</h1>
+<h1 class="page">Basic commands</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="imageblock">
+<div class="paragraph">
+<p>While there are plenty of commands available in Linux, there are a certain few that are crucial to your Linux experience.
+Most likely, you&#8217;ll end up using these commands daily.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="whoami"><a class="anchor" href="#whoami"></a>Using <code>whoami</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>whoami</code> command prints the user name of the currently logged-in user. Running the below command would result in the output of the username associated with current effective user id.</p>
+</div>
+<div class="listingblock console-input">
 <div class="content">
-<img src="_images/rhel-logo.png" alt="RHEL Logo" width="600">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">whoami</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cclyburn</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In addition, the <code>who</code> command is used to provide more system information, including when the system has booted last time, a list of logged-in users, and the system’s current run level.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">who</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cclyburn pts/0        2022-09-23 17:55 (107.13.167.190)</code></pre>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1 text-center strong">
-<h2>Welcome to your Linux Journey!</h2>
+<div class="sect1">
+<h2 id="man"><a class="anchor" href="#man"></a>Using <code>man</code></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This tutorial will provide you with an introduction to Linux skills, using <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux</a> (RHEL).</p>
+<p>The <code>man</code> command prints documentation for any Linux command on the system.
+You can learn about usage, related packages, and more from <code>man</code> pages.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">man whoami</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">WHOAMI(1)                          User Commands                         WHOAMI(1)
+
+NAME
+       whoami - print effective userid
+
+SYNOPSIS
+       whoami [OPTION]...
+
+DESCRIPTION
+       Print the user name associated with the current effective user ID.  Same as
+       id -un.
+
+       --help display this help and exit
+
+       --version
+              output version information and exit</code></pre>
 </div>
 </div>
 </div>
-<div class="sect1 text-center strong">
-<h2>What is Red Hat Enterprise Linux?</h2>
+</div>
+<div class="sect1">
+<h2 id="whatis"><a class="anchor" href="#whatis"></a>Using <code>whatis</code></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Red Hat Enterprise Linux is the world’s leading enterprise Linux platform, now optimized for development. It supports every major programming language and latest version of each language. Additionally, RHEL includes a complete set of tools for developing for microservices, containers, and cloud-native applications. Learn more <a href="https://developers.redhat.com/products/rhel/overview">here</a>!</p>
+<p>Each manual page has a short description available within it.
+<code>whatis</code> searches the manual page names and displays the manual page descriptions of any name matched, without having to look over the entire <code>man</code> page.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">whatis whoami</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">whoami(1)                - print effective userid</code></pre>
 </div>
 </div>
 </div>
-<div class="sect1 tiles browse">
-<h2>Tutorial Steps</h2>
+</div>
+<div class="sect1">
+<h2 id="reboot"><a class="anchor" href="#reboot"></a>Using <code>reboot</code></h2>
 <div class="sectionbody">
-<div class="ulist tile">
-<ul>
-<li>
-<p>1. Getting Started</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="introduction.html" class="xref page">Linux</a></p>
-</li>
-<li>
-<p><a href="setup-lab.html" class="xref page">Accessing Linux</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html" class="xref page">Linux Installation</a></p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="setup-vm.html#downloadingrhel" class="xref page">Downloading RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#virtualbox" class="xref page">Setting up VirtualBox</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#gettingstarted" class="xref page">Getting started with RHEL</a></p>
-</li>
-<li>
-<p><a href="setup-vm.html#rhel-cli" class="xref page">RHEL CLI</a></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>The most straightforward way to restart your Linux server is with the <code>reboot</code> command. If you don&#8217;t already have administrative privileges, you&#8217;ll need them for this.</p>
 </div>
-</li>
-</ul>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo reboot</code></pre>
 </div>
-</li>
-</ul>
 </div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>2. Basics</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="registering.html" class="xref page">Registering a RHEL system</a></p>
-</li>
-<li>
-<p><a href="basic-commands.html" class="xref page">Basic commands</a></p>
-</li>
-<li>
-<p><a href="file-operations.html" class="xref page">File operations</a></p>
-</li>
-<li>
-<p><a href="installing-software.html" class="xref page">Installing software</a></p>
-</li>
-<li>
-<p><a href="systemd.html" class="xref page">Systemd</a></p>
-</li>
-<li>
-<p><a href="cockpit.html" class="xref page">RHEL User Interface: Cockpit</a></p>
-</li>
-<li>
-<p><a href="unpackaged-software.html" class="xref page">Installing unpackaged software</a></p>
-</li>
-<li>
-<p><a href="permissions.html" class="xref page">Permission &amp; ownerships</a></p>
-</li>
-</ul>
 </div>
-</li>
-</ul>
 </div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>3. Intermediate</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="tmux.html" class="xref page">Terminal multiplexer: tmux</a></p>
-</li>
-<li>
-<p><a href="nano.html" class="xref page">Code editor: nano</a></p>
-</li>
-<li>
-<p><a href="processes.html" class="xref page">Finding &amp; killing processes</a></p>
-</li>
-<li>
-<p><a href="os-stats.html" class="xref page">Gathering OS stats</a></p>
-</li>
-<li>
-<p><a href="open-ports.html" class="xref page">Looking at open ports</a></p>
-</li>
-<li>
-<p><a href="advanced-ssh.html" class="xref page">Advanced SSH</a></p>
-</li>
-<li>
-<p><a href="selinux-security.html" class="xref page">Security: SELinux</a></p>
-</li>
-</ul>
+<div class="sect1">
+<h2 id="which"><a class="anchor" href="#which"></a>Using which</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The 'which' command is used to locate the executable file associated with a given command. It prints the full path of the executable command file that is executed when a user runs a particular command.</p>
 </div>
-</li>
-</ul>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">which ls</code></pre>
 </div>
-<div class="ulist tile">
-<ul>
-<li>
-<p>4. Free Resources</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="resources/cheat-sheets.html" class="xref page">Cheat sheets</a></p>
-</li>
-<li>
-<p><a href="resources/training.html" class="xref page">Red Hat training</a></p>
-</li>
-<li>
-<p><a href="resources/books.html" class="xref page">Books</a></p>
-</li>
-<li>
-<p><a href="resources/labs.html" class="xref page">Labs</a></p>
-</li>
-<li>
-<p><a href="resources/devnation.html" class="xref page">DevNation</a></p>
-</li>
-</ul>
 </div>
-</li>
-</ul>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">/bin/ls</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above example, the output '/bin/ls' shows that the 'ls' command is located in the '/bin' directory.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="next"><a href="introduction.html">Linux</a></span>
+  <span class="prev"><a href="registering.html">Registering a RHEL system</a></span>
+  <span class="next"><a href="file-operations.html">File operations</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
