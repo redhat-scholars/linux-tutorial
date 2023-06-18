@@ -3,7 +3,7 @@ runtime:
 
 site:
   title: Linux Tutorial
-  url: https://redhat-scholars.github.io/course-template
+  url: https://redhat-scholars.github.io/linux-tutorial
   start_page: linux-tutorial::index.adoc
 
 content:
