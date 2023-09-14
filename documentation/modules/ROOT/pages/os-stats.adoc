@@ -12,7 +12,7 @@ Installing `iotop` is similar to any other tool, where we can use `dnf`.
 [.console-input]
 [source,bash]
 ----
-sudo dnf install -y top iotop
+sudo dnf install -y iotop
 ----
 
 [.console-output]
