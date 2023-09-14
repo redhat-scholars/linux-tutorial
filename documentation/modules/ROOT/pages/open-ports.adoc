@@ -76,8 +76,7 @@ In order to add a port to the firewall and make the change permanent, let's use 
 [.console-input]
 [source,bash]
 ----
-firewall-cmd --permanent --add-port=8080/tcp && firewall-cmd
-success
+firewall-cmd --permanent --add-port=8080/tcp
 ----
 
 [.console-output]
