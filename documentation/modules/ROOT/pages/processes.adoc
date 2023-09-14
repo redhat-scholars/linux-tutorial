@@ -22,12 +22,12 @@ ps
   81880 pts/0    00:00:00 ps
 ----
 
-For finding the most amount of information a user usually needs to understand the current state of their system’s running processes, we can use `aux ps`.
+For finding the most amount of information a user usually needs to understand the current state of their system’s running processes, we can use `ps aux`.
 
 [.console-input]
 [source,bash]
 ----
-aux ps
+ps aux
 ----
 
 [.console-output]
